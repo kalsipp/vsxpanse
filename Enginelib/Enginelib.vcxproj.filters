@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="src\basics">
+      <UniqueIdentifier>{068aa806-ff95-479e-9773-1c855ad82ce2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="targetver.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphicsmanager.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\basics\helpers.hpp">
+      <Filter>src\basics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\basics\logging.hpp">
+      <Filter>src\basics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\basics\rect.hpp">
+      <Filter>src\basics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\basics\resourcefile.hpp">
+      <Filter>src\basics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\basics\sprite.hpp">
+      <Filter>src\basics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\basics\timer.hpp">
+      <Filter>src\basics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\basics\vector2d.hpp">
+      <Filter>src\basics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\basics\vector3d.hpp">
+      <Filter>src\basics</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\graphicsmanager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basics\helpers.cpp">
+      <Filter>src\basics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basics\logging.cpp">
+      <Filter>src\basics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basics\rect.cpp">
+      <Filter>src\basics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basics\resourcefile.cpp">
+      <Filter>src\basics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basics\sprite.cpp">
+      <Filter>src\basics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basics\timer.cpp">
+      <Filter>src\basics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basics\vector2d.cpp">
+      <Filter>src\basics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basics\vector3d.cpp">
+      <Filter>src\basics</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
