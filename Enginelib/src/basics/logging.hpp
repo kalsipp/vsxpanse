@@ -3,9 +3,7 @@
 #include <sstream>
 #include <iostream>
 #include <fstream>
-#include <thread>
 #include <queue>
-#include <mutex>
 #include <cstdint>
 #include <chrono>
 #include <vector>
@@ -14,6 +12,11 @@
 #else
 #include <time.h> 
 #endif
+#ifdef _MSC_VER
+#undef ERROR
+#endif
+
+//#define LOGGING_TERMINAL_PRINT
 
 class LoggingFile {
 public:
@@ -57,8 +60,8 @@ public:
 class Logging {
 public:
 	static void add_file(const std::string & name, uint8_t verbosity);
-	static void log(uint8_t level, const std::basic_ostream<char> &);
-	static void log(uint8_t level, const std::string &);
+	static void log(const std::basic_ostream<char> &, uint8_t level = Logging::INFO);
+	static void log(const std::string &, uint8_t level = Logging::INFO);
 	static void teardown();
 	static void initialize();
 	static const uint8_t TRACE;
@@ -72,10 +75,8 @@ private:
 	static void write_loop();
 	static bool m_initialized;
 	static bool m_running;
-	static std::thread m_write_thread;
 	static std::vector<LoggingFile*> m_loggingfiles;
 	static std::queue<LogEntry> m_write_queue;
-	static std::mutex m_mutex;
 	static const std::string RED_TEXT;
 	static const std::string YELLOW_TEXT;
 	static const std::string GREY_TEXT;

@@ -1,0 +1,113 @@
+#pragma once
+
+
+
+#include <vector>
+#include <limits>
+#include <queue>
+#include <map>
+#ifdef __GNUC__
+#include <execinfo.h>
+#endif
+
+
+#include "basics/logging.hpp"
+#include "gameobject.hpp"
+#include "filesystem/resourcearchive.hpp"
+
+/*
+	Usage:
+	void foo()
+	{
+	  Add gameobjects here
+	}
+
+	Engine::initialize(); 
+	Engine::register_scene("scene1", foo);
+	Engine::load_scene("scene1);
+	Engine::start();
+	Engine::teardown();
+
+*/
+
+/*
+	1. replace scene if needed
+	2. put all new gameobjects into world
+	3. remove all destroyed gameobjects from world
+	4. update inputs
+	5. user logic update
+		Usage of input. Determining movement of objects. 
+		Loading of new scenes. Changing sprites.
+	6. user physic update 
+		Movement of objects. Changing physics velocity/force.
+	7 colliders will call user logic through callbacks when 
+		collision is registered.
+	8 system physics. 
+	9. render
+*/
+
+
+class GameObject;
+class Engine {
+public:
+	static void initialize();
+	static void teardown();
+	static void start();
+	static void stop();
+	template <class gameobject_type>
+	static gameobject_type* add_gameobject();
+	template <class gameobject_type>
+	static gameobject_type * get_gameobject(const GAMEOBJECT_ID id);
+	static GameObject * get_gameobject(const GAMEOBJECT_ID id);
+	static void remove_gameobject(const GAMEOBJECT_ID id);
+	static unsigned long get_gameobject_count();
+	static void register_scene(const std::string & name,  void (*scenecreator)());
+	static void load_scene(const std::string & name);
+private:
+	Engine();
+	static void main_loop();
+	static void replace_scene();
+	static void update_gameobjects();
+	static void render_gameobjects();
+	static void sort_gameobjects(std::vector<GameObject*>& objs);
+	static void clear_all_gameobjects();
+	static void load_default_resources();
+	/*Actually puts the changes in place*/
+	static void put_gameobjects_into_world();
+	static void remove_gameobject_from_world();
+	static void run_setups(std::vector<GameObject*> & );
+	
+	static std::map<std::string, void(*)()> m_scenes;
+
+	static std::string m_scene_to_load;
+	static bool m_about_to_load_scene;
+
+	static bool m_running;
+	static bool m_initialized;
+	static std::map<GAMEOBJECT_ID, GameObject*> m_gameobjects;
+	static std::queue<std::pair<GAMEOBJECT_ID, GameObject*>> m_gameobjects_to_add;
+	static std::queue<GAMEOBJECT_ID> m_gameobjects_to_remove;
+	static GAMEOBJECT_ID m_latest_gameobject_id;
+	static ResourceArchive m_engine_resources;
+};
+
+template <class gameobject_type>
+gameobject_type * Engine::add_gameobject() {
+	GAMEOBJECT_ID id = Engine::m_latest_gameobject_id;
+	gameobject_type * new_object = new gameobject_type(id);
+	if (Engine::m_latest_gameobject_id == std::numeric_limits<int>::max()) {
+		Logging::log("Warning, gameobject id overflow", Logging::WARNING);
+	}
+	std::pair<GAMEOBJECT_ID, GameObject *> pair = std::make_pair(id, new_object);
+	Engine::m_gameobjects_to_add.push(pair);
+	++Engine::m_latest_gameobject_id;
+	Logging::log("Added gameobject id " + std::to_string(id) + " type " + typeid(gameobject_type).name(), Logging::TRACE);
+	return new_object;
+}
+
+template <class gameobject_type>
+gameobject_type * Engine::get_gameobject(const GAMEOBJECT_ID id) {
+	assert(Engine::m_gameobjects.count(id));
+	if (!Engine::m_gameobjects.count(id)) return nullptr;
+    return std::static_pointer_cast<gameobject_type>(Engine::m_gameobjects[id]);
+}

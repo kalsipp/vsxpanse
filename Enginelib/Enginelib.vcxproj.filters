@@ -8,6 +8,12 @@
     <Filter Include="src\basics">
       <UniqueIdentifier>{068aa806-ff95-479e-9773-1c855ad82ce2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\components">
+      <UniqueIdentifier>{800ce360-0e49-4d59-a95f-ccc693d5f83e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\filesystem">
+      <UniqueIdentifier>{de09cb71-c856-496b-a2d4-9206753df4bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -25,9 +31,6 @@
     <ClInclude Include="src\basics\rect.hpp">
       <Filter>src\basics</Filter>
     </ClInclude>
-    <ClInclude Include="src\basics\resourcefile.hpp">
-      <Filter>src\basics</Filter>
-    </ClInclude>
     <ClInclude Include="src\basics\sprite.hpp">
       <Filter>src\basics</Filter>
     </ClInclude>
@@ -38,6 +41,48 @@
       <Filter>src\basics</Filter>
     </ClInclude>
     <ClInclude Include="src\basics\vector3d.hpp">
+      <Filter>src\basics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\component.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameobject.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\inputmanager.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\basicsquarecollider.hpp">
+      <Filter>src\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\debug_closegamecomponent.hpp">
+      <Filter>src\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\spritecomponent.hpp">
+      <Filter>src\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\textcomponent.hpp">
+      <Filter>src\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\transform.hpp">
+      <Filter>src\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\collider.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\filesystem\resourcearchive.hpp">
+      <Filter>src\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="src\filesystem\resourcefile.hpp">
+      <Filter>src\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="src\filesystem\zipwrap.hpp">
+      <Filter>src\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="src\basics\vector2dint.hpp">
       <Filter>src\basics</Filter>
     </ClInclude>
   </ItemGroup>
@@ -54,9 +99,6 @@
     <ClCompile Include="src\basics\rect.cpp">
       <Filter>src\basics</Filter>
     </ClCompile>
-    <ClCompile Include="src\basics\resourcefile.cpp">
-      <Filter>src\basics</Filter>
-    </ClCompile>
     <ClCompile Include="src\basics\sprite.cpp">
       <Filter>src\basics</Filter>
     </ClCompile>
@@ -67,6 +109,45 @@
       <Filter>src\basics</Filter>
     </ClCompile>
     <ClCompile Include="src\basics\vector3d.cpp">
+      <Filter>src\basics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\component.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameobject.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\inputmanager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\basicsquarecollider.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\spritecomponent.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\textcomponent.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\transform.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\collider.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\filesystem\resourcearchive.cpp">
+      <Filter>src\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\filesystem\resourcefile.cpp">
+      <Filter>src\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\filesystem\zipwrap.cpp">
+      <Filter>src\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basics\vector2dint.cpp">
       <Filter>src\basics</Filter>
     </ClCompile>
   </ItemGroup>

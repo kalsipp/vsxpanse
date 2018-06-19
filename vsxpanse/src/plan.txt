@@ -1,0 +1,33 @@
+PlayerController manages the player unit's movement/shooting etc.
+GuiControl manages the players mouse controls, such as giving orders and such.
+
+Base class Unit.
+	Units can take orders 
+	Order may be to harvest resources.
+	Player will click resource, which GuiControl parses. 
+	This then needs to be transferred to the units somehow
+
+1. Order queue. One click one order. One unit takes this order and goes to work. -> Will lead to a lot of clicking
+
+2. Standing order list. Assign an order and this order will last until 
+some condition is fulfilled (out of resources) or if it's unassigned. 
+	Will require units to iterate through order list.
+	Need to figure out ways to unassign all unique orders.
+	All units will do the same thing.
+
+3. Units are not given order, but preferences of what order they like. An iron harvester will go and harvest iron. 
+	Dwarf fortress style
+	More automated.
+	Less control. Might lead to frustration. 
+	Quite easy to implement tbh.
+
+
+
+
+When a unit has to figure out the next thing to do, like if it should gather a resource, then it needs to know where it can find those resources. 
+	1. Let every "resource" be a resource field instead, thus minimizing the number of fields to like 10-20.
+
+	2. Have a heap of resources which are organized by their distance from a central point. Then the unit can simply pick the next item from that heap. However it needs to mind if the resource suddenly becomes unavailable. 
+		This raises the question of what should be the central point. 
+		How does Dwarf Fortress do this? Possibly from the current "town hall". If this is robot-based, then it could be some kind of "communications core".
+

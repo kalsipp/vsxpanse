@@ -4,7 +4,11 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <SDL_image.h>
-#include "helpers.hpp"
+#include "../basics/helpers.hpp"
+
+/*-------------------------------------------------------
+	Contains the reference to one file-buffer
+---------------------------------------------------------*/
 
 class ResourceFile{
 	public:
@@ -20,5 +24,7 @@ class ResourceFile{
 	private:
 		SDL_RWops * m_file_p = nullptr;
 		const uint m_size;
+
+		/* Need to keep track if it's a font to handle memory clearing properly */
 		bool m_is_font = false;
 };

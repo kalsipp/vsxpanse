@@ -23,30 +23,38 @@ void Logging::add_file(const std::string & name, uint8_t verbosity) {
 #endif
 }
 
-void Logging::log(uint8_t level, const std::basic_ostream<char> & stream) {
+void Logging::log(const std::basic_ostream<char> & stream, uint8_t level) {
 #ifdef DEBUG
 	std::stringstream ss;
 	ss << stream.rdbuf();
-	Logging::log(level, ss.str());
+	Logging::log(ss.str(), level);
 #else
 	(void)level;
 	(void)stream;
 #endif
 }
 
-void Logging::log(uint8_t level, const std::string & text) {
+void Logging::log(const std::string & text, uint8_t level) {
 
 #ifdef DEBUG
 	if (!m_initialized) Logging::initialize();
+
+	if (!m_loggingfiles.size()) /* If we haven't added any files create one here*/
+	{
+		add_file("tmplog.log", Logging::TRACE);
+	}
+
 	int64_t duration = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - m_start_time).count();
 	LogEntry entry(text, duration, level);
-	Logging::fancify(entry);
+	std::string out = Logging::fancify(entry);
 	for (auto it = m_loggingfiles.begin(); it != m_loggingfiles.end(); ++it) {
 		if (entry.m_level >= (*it)->m_verbosity) {
-			(*it)->write(entry.m_text);
+			(*it)->write(out);
 		}
 	}
+#ifdef LOGGING_TERMINAL_PRINT
 	Logging::output_to_terminal(entry);
+#endif
 #else
 	(void)level;
 	(void)text;
@@ -58,7 +66,6 @@ void Logging::initialize() {
 	m_initialized = true;
 	m_running = true;
 	m_start_time = std::chrono::high_resolution_clock::now();
-	// m_write_thread = std::thread(write_loop);
 #else
 #endif
 }
@@ -66,7 +73,6 @@ void Logging::initialize() {
 void Logging::teardown() {
 #ifdef DEBUG
 	m_running = false;
-	// m_write_thread.join();
 	for (auto it = m_loggingfiles.begin(); it != m_loggingfiles.end(); ++it) {
 		delete *it;
 	}
@@ -119,11 +125,9 @@ void Logging::output_to_terminal(const LogEntry & entry) {
 void Logging::write_loop() {
 #ifdef DEBUG
 	while (m_running || !m_write_queue.empty()) {
-		m_mutex.lock();
 		if (!m_write_queue.empty()) {
 			LogEntry entry = m_write_queue.front();
 			m_write_queue.pop();
-			m_mutex.unlock();
 			entry.m_text = Logging::fancify(entry);
 			for (auto it = m_loggingfiles.begin(); it != m_loggingfiles.end(); ++it) {
 				if (entry.m_level >= (*it)->m_verbosity) {
@@ -131,8 +135,6 @@ void Logging::write_loop() {
 				}
 			}
 			Logging::output_to_terminal(entry);
-		} else {
-			m_mutex.unlock();
 		}
 
 	}

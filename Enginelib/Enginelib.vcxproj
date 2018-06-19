@@ -72,13 +72,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\marti\source\repos\vsxpanse\shared_external_libs\zlib;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\marti\source\repos\vsxpanse\shared_external_libs\zlib;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\lib\x86;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\lib\x86;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\Users\marti\source\repos\vsxpanse\shared_external_libs\zlib;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\marti\source\repos\vsxpanse\shared_external_libs\zlib;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\lib\x86;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\lib\x86;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -89,7 +92,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_SCL_SECURE_NO_WARNINGS;_DEBUG;_LIB;DEBUG;%(PreprocessorDefinitions);D_SCL_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <ForcedIncludeFiles>%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
@@ -97,6 +100,10 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\lib\x86;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\lib\x86;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -114,13 +121,13 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_SCL_SECURE_NO_WARNINGS;NDEBUG;_LIB;%(PreprocessorDefinitions);D_SCL_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
     </ClCompile>
@@ -153,24 +160,49 @@
     <ClInclude Include="src\basics\helpers.hpp" />
     <ClInclude Include="src\basics\logging.hpp" />
     <ClInclude Include="src\basics\rect.hpp" />
-    <ClInclude Include="src\basics\resourcefile.hpp" />
     <ClInclude Include="src\basics\sprite.hpp" />
     <ClInclude Include="src\basics\timer.hpp" />
     <ClInclude Include="src\basics\vector2d.hpp" />
+    <ClInclude Include="src\basics\vector2dint.hpp" />
     <ClInclude Include="src\basics\vector3d.hpp" />
+    <ClInclude Include="src\collider.hpp" />
+    <ClInclude Include="src\component.hpp" />
+    <ClInclude Include="src\components\basicsquarecollider.hpp" />
+    <ClInclude Include="src\components\debug_closegamecomponent.hpp" />
+    <ClInclude Include="src\components\spritecomponent.hpp" />
+    <ClInclude Include="src\components\textcomponent.hpp" />
+    <ClInclude Include="src\components\transform.hpp" />
+    <ClInclude Include="src\engine.hpp" />
+    <ClInclude Include="src\filesystem\resourcearchive.hpp" />
+    <ClInclude Include="src\filesystem\resourcefile.hpp" />
+    <ClInclude Include="src\filesystem\zipwrap.hpp" />
+    <ClInclude Include="src\gameobject.hpp" />
     <ClInclude Include="src\graphicsmanager.hpp" />
+    <ClInclude Include="src\inputmanager.hpp" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\basics\helpers.cpp" />
     <ClCompile Include="src\basics\logging.cpp" />
     <ClCompile Include="src\basics\rect.cpp" />
-    <ClCompile Include="src\basics\resourcefile.cpp" />
     <ClCompile Include="src\basics\sprite.cpp" />
     <ClCompile Include="src\basics\timer.cpp" />
     <ClCompile Include="src\basics\vector2d.cpp" />
+    <ClCompile Include="src\basics\vector2dint.cpp" />
     <ClCompile Include="src\basics\vector3d.cpp" />
+    <ClCompile Include="src\collider.cpp" />
+    <ClCompile Include="src\component.cpp" />
+    <ClCompile Include="src\components\basicsquarecollider.cpp" />
+    <ClCompile Include="src\components\spritecomponent.cpp" />
+    <ClCompile Include="src\components\textcomponent.cpp" />
+    <ClCompile Include="src\components\transform.cpp" />
+    <ClCompile Include="src\engine.cpp" />
+    <ClCompile Include="src\filesystem\resourcearchive.cpp" />
+    <ClCompile Include="src\filesystem\resourcefile.cpp" />
+    <ClCompile Include="src\filesystem\zipwrap.cpp" />
+    <ClCompile Include="src\gameobject.cpp" />
     <ClCompile Include="src\graphicsmanager.cpp" />
+    <ClCompile Include="src\inputmanager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

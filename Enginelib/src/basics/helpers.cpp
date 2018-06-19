@@ -1,6 +1,7 @@
 #include <random>
 #include "helpers.hpp"
-
+#include "logging.hpp"
+#include <random>
 #ifdef __GNUC__
 void sig_error_handler(int sig) {
 	void *array[10];
@@ -34,15 +35,36 @@ void sig_error_handler(int sig) {
 	exit(1);
 }
 #endif
-namespace helpers {
 
-uint random_int(int min, int max) {
-	// std::mt19937 rng;
-	// rng.seed(std::random_device()());
-	// rng.seed(std::chrono::high_resolution_clock::now().time_since_epoch().count());
-	// std::uniform_int_distribution<std::mt19937::result_type> dist(min, max);
-	return rand()%min +max;
-	// return 5;
+
+void ASSERT(bool condition, const std::string & message)
+{
+#ifdef DEBUG
+	if (!condition)
+	{
+		Logging::log(std::stringstream() << std::endl << "Assertion: " << condition << std::endl <<
+			"Failed in file: " << __FILE__ << std::endl <<
+			"line: " << __LINE__ << std::endl <<
+			"Message: " << message << std::endl << std::endl, Logging::ERROR);
+		Logging::teardown();
+		HELPERS_CALL_SIG_HANDLER;
+		std::terminate();
+
+	}
+#else
+	(void)condition;
+	(void)message;
+#endif
+}
+
+
+namespace helpers {
+	static std::random_device random_int_rd;
+	static std::mt19937 random_int_rng(random_int_rd());
+
+	int random_int(int min, int max) {
+	std::uniform_int_distribution<int> uni(min, max);
+	return uni(random_int_rng);
 }
 
 std::string get_filename_from_path(const std::string & path) {

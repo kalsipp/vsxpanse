@@ -1,5 +1,6 @@
 #include "sprite.hpp"
 
+
 Sprite::Sprite(SDL_Texture * new_text): m_texture(new_text) {
 	int width = 0;
 	int height = 0;

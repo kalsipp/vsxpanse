@@ -1,14 +1,17 @@
 #include "graphicsmanager.hpp"
+#include "basics/logging.hpp"
+#include "filesystem/resourcearchive.hpp"
+#include "basics/helpers.hpp"
 
 /* Parameters */
 
 bool GraphicsManager::m_initialized = false;
 SDL_Window * GraphicsManager::m_main_window = nullptr;
 SDL_Surface * GraphicsManager::m_main_surface = nullptr;
-SDL_Renderer * GraphicsManager::m_main_renderer = nullptr;
+SDL_Renderer * GraphicsManager::m_main_renderer = nullptr;	
 unsigned int GraphicsManager::m_screen_width = 1024 ;
 unsigned int GraphicsManager::m_screen_height = 768;
-std::map<std::string, SDL_Texture*> GraphicsManager::m_textures;
+std::map<ResourceFile *, SDL_Texture*> GraphicsManager::m_textures;
 std::string GraphicsManager::m_window_name = "Let's go bois";
 SDL_Color GraphicsManager::render_draw_color = {0, 0, 0, 1};
 /* Public Routines */
@@ -20,7 +23,7 @@ void GraphicsManager::initialize() {
 	       "SDL could not initialize! SDL_Error: " +  std::string(SDL_GetError()));
 	if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0")) // 0 = nearest pixel sampling
 	{
-		Logging::log(Logging::WARNING, std::stringstream()<< "Warning: Linear texture filtering not enabled!");
+		Logging::log(std::stringstream()<< "Warning: Linear texture filtering not enabled!", Logging::WARNING);
 	}
 	GraphicsManager::m_main_window = SDL_CreateWindow(
 	                                     GraphicsManager::m_window_name.c_str(),
@@ -58,7 +61,7 @@ void GraphicsManager::initialize() {
 	ASSERT(ok != -1,
 	       "SDL_ttf could not initialize! SDL_ttf Error: " + std::string(TTF_GetError()));
 	GraphicsManager::m_initialized = true;
-	Logging::log(Logging::INFO, "Finished initialing GraphicsManager");
+	Logging::log("Finished initialing GraphicsManager");
 }
 
 void GraphicsManager::teardown() {
@@ -71,8 +74,9 @@ void GraphicsManager::teardown() {
 	TTF_Quit();
 	IMG_Quit();
 	SDL_Quit();
-	Logging::log(Logging::INFO, "Finished teardown GraphicsManager");
-
+	m_initialized = false;
+	Logging::log("Finished teardown GraphicsManager");
+		
 }
 
 void GraphicsManager::prepare_rendering() {
@@ -125,23 +129,18 @@ void GraphicsManager::execute_rendering() {
 	SDL_RenderPresent(GraphicsManager::m_main_renderer);
 }
 
-void GraphicsManager::load_texture(const std::string & path) {
-    //std::string filename = helpers::get_filename_from_path(path);
-	//ASSERT(!m_textures.count(filename), "Trying to load texure twice!");
-    
-    //ResourceFile * file = ResourceManager::get_item(path);
- //   SDL_Surface * new_surf = file->get_surface();
- //   ResourceManager::free_item(file);
- //   SDL_Texture * new_text = GraphicsManager::convert_surface_to_texture(new_surf);
-	//SDL_FreeSurface(new_surf);
-	//m_textures[filename] = new_text;
-	//Logging::log(Logging::INFO, "Loaded texture " +  path);
+SDL_Texture * GraphicsManager::load_texture(ResourceFile * file) {
+	if (m_textures.count(file)) return m_textures[file];
+	Logging::log(std::stringstream() << "Loaded texture " << file);
+    SDL_Surface * new_surf = file->get_surface();
+    SDL_Texture * new_text = GraphicsManager::convert_surface_to_texture(new_surf);
+	m_textures[file] = new_text;
+	return m_textures[file];
 }
 
-SDL_Texture * GraphicsManager::get_texture(const std::string & filename) {
-	auto it = GraphicsManager::m_textures.find(filename);
-	ASSERT(it != GraphicsManager::m_textures.end(), "Has not loaded " + filename);
-	return (*it).second;
+SDL_Texture * GraphicsManager::get_texture(ResourceFile * file) {
+	ASSERT(m_textures.count(file), "Has not loaded texture ");
+	return m_textures[file];
 }
 
 SDL_Texture * GraphicsManager::get_texture_from_text(const std::string & text, TTF_Font * font , SDL_Color & textColor) {
@@ -159,13 +158,8 @@ SDL_Surface * GraphicsManager::load_image_to_surface(const std::string & filenam
     return new_surf;
 }
 
-// SDL_Surface * GraphicsManager::load_surface_from_sdl_rwops(SDL_RWops* image){
-
-//     SDL_Surface * new_surf = IMG_Load_RW(image, 0);
-//     ASSERT(new_surf, IMG_GetError());
-//     return new_surf;
-// }
-
 SDL_Texture  * GraphicsManager::convert_surface_to_texture(SDL_Surface* new_surf) {
-	return SDL_CreateTextureFromSurface(GraphicsManager::m_main_renderer, new_surf);
+	SDL_Texture * out = SDL_CreateTextureFromSurface(GraphicsManager::m_main_renderer, new_surf);
+	ASSERT(out, "Could not load texture, SDL_Error: " + std::string(SDL_GetError()));
+	return out;
 }
