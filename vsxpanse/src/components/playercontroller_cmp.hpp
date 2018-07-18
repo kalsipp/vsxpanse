@@ -5,8 +5,8 @@
 class PlayerControllerCmp : public Component
 {
 public:
-	PlayerControllerCmp();
+	PlayerControllerCmp(GameObject * owner) :Component(owner) {}
 	void update()override;
 private:
-	double m_speed;
+	double m_speed = 1;
 };

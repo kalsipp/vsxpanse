@@ -84,7 +84,7 @@ void Engine::remove_gameobject(const GAMEOBJECT_ID id) {
 	Logging::log("Removing gameobject id " + std::to_string(id), Logging::TRACE);
 }
 
-unsigned long Engine::get_gameobject_count() {
+size_t Engine::get_gameobject_count() {
 	return Engine::m_gameobjects.size();
 }
 
@@ -136,16 +136,12 @@ void Engine::update_gameobjects() {
 	        go != Engine::m_gameobjects.end(); ++go) {
 		(*go).second->update_components();
 	}
-	for (auto go = Engine::m_gameobjects.begin();
-	        go != Engine::m_gameobjects.end(); ++go) {
-		(*go).second->update();
-	}
 }
 
 void Engine::render_gameobjects() {
 	std::vector<GameObject *> items_to_render;
 
-	Engine::sort_gameobjects(items_to_render);
+	Engine::sort_gameobjects_renderorder(items_to_render);
 	GraphicsManager::prepare_rendering();
 	for (auto go = items_to_render.begin();
 	        go != items_to_render.end(); ++go) {
@@ -154,18 +150,15 @@ void Engine::render_gameobjects() {
 	GraphicsManager::execute_rendering();
 }
 
-bool compare_gameobjects(const GameObject* a, const GameObject* b) {
+bool compare_gameobjects_zpos(const GameObject* a, const GameObject* b) {
 	return (a->transform().get_position().z < b->transform().get_position().z);
 }
 
-void Engine::sort_gameobjects(std::vector<GameObject*>& objs) {
-
-	//fill items
+void Engine::sort_gameobjects_renderorder(std::vector<GameObject*>& objs) {
 	for (auto i = m_gameobjects.begin(); i != m_gameobjects.end(); ++i) {
 		objs.push_back(i->second);
 	}
-	//sort by value using std::sort
-	std::sort(objs.begin(), objs.end(), compare_gameobjects);
+	std::sort(objs.begin(), objs.end(), compare_gameobjects_zpos);
 }
 
 
@@ -200,11 +193,7 @@ void Engine::remove_gameobject_from_world() {
 	while (!Engine::m_gameobjects_to_remove.empty()) {
 		GAMEOBJECT_ID id = Engine::m_gameobjects_to_remove.front();
 		if (Engine::m_gameobjects.count(id)) {
-			for (auto comp = Engine::m_gameobjects[id]->get_all_components().begin();
-			        comp != Engine::m_gameobjects[id]->get_all_components().end();
-			        ++comp) {
-				(*comp)->teardown();
-			}
+			Engine::m_gameobjects[id]->teardown();
 			Engine::m_gameobjects_to_remove.pop();
 			Engine::m_gameobjects.erase(id);
 		}
@@ -215,11 +204,7 @@ void Engine::remove_gameobject_from_world() {
 void Engine::run_setups(std::vector<GameObject*> & gameobjects) {
 
 	for (auto go = gameobjects.begin(); go != gameobjects.end(); ++go) {
-		for (auto comp = (*go)->get_all_components().begin();
-		        comp != (*go)->get_all_components().end();
-		        ++comp) {
-			(*comp)->setup(*go);
-		}
+		(*go)->setup();
 	}
 }
 

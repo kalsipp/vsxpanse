@@ -3,8 +3,7 @@
 std::vector<Collider*> Collider::m_all_colliders;
 
 
-void Collider::setup(GameObject* user) {
-	m_owner = user;
+void Collider::setup() {
 	register_collider(this);
 }
 

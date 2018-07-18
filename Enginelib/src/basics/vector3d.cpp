@@ -1,5 +1,6 @@
 #include "vector3d.hpp"
-
+#include "vector2d.hpp"
+#include "vector2dint.hpp"
 
 Vector3D::Vector3D(double _x, double _y, double _z):
 	x(_x), y(_y), z(_z) 
@@ -9,7 +10,7 @@ Vector3D::Vector3D(const Vector2D & other):
 	x(other.x),
 	y(other.y)
 	{}
-
+Vector3D::Vector3D(const Vector2DInt & other) :x(other.x), y(other.y) {}
 Vector3D Vector3D::operator+(const Vector3D&other)const {
 	return Vector3D(x + other.x, y + other.y, z + other.z);
 }

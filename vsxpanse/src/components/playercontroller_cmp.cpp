@@ -1,10 +1,6 @@
 #include "playercontroller_cmp.hpp"
 #include "inputmanager.hpp"
 
-PlayerControllerCmp::PlayerControllerCmp() :
-	m_speed(1)
-{
-}
 
 void PlayerControllerCmp::update()
 {

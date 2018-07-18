@@ -1,14 +1,14 @@
 #pragma once
 #include <cmath>
-#include "vector2d.hpp"
 #include "helpers.hpp"
 class Vector2D;
-
+class Vector2DInt;
 class Vector3D {
 public:
 	Vector3D() {}
 	Vector3D(double _x, double _y = 0, double _z = 0);
 	Vector3D(const Vector2D &);
+	Vector3D(const Vector2DInt &);
 	Vector3D operator+(const Vector3D&)const;
 	Vector3D & operator+=(const Vector3D &);
 	Vector3D & operator+=(const Vector2D &);

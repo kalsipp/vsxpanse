@@ -90,6 +90,12 @@ bool InputManager::get_latest_mouse_event(int mousebtn, SDL_MouseButtonEvent * e
 	}
 }
 
+Vector2DInt InputManager::get_mouse_position()
+{
+	Vector2DInt container;
+	SDL_GetMouseState(&container.x, &container.y);
+	return container;
+}
 
 /*Privates*/
 

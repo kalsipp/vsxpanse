@@ -1,38 +1,39 @@
 #pragma once
+#include <stack>
 #include "component.hpp"
-class Unit;
-class UnitOrder
-{
-public:
-	/* Returns true when done */
-	virtual bool execute(Unit* unit) { return true; }
-	virtual bool can_i_do_this(Unit* unit) { return false; }
-	virtual void reset() {}
-};
+#include "../resourcemanager.hpp"
+#include "basics/vector2dint.hpp"
+#include "basics/timer.hpp"
+#include "agent.hpp"
 
-class HarvestGenericResource : public UnitOrder
+class HarvestGenericResource : public AgentOrder
 {
 public:
-	bool execute(Unit* unit)override;
-	bool can_i_do_this(Unit* unit)override;
+	bool execute(Agent* unit)override;
+	bool can_i_do_this(Agent* unit)override;
 private:
 	void find_resource();
-	GameObject * m_target_resource = nullptr;
-
+	ResourceCmp * m_target_resource = nullptr;
+	std::stack<Vector2DInt> m_movement_stack;
+	Vector2DInt m_current_movement_target;
 };
 
-class Unit : public Component
+
+class Harvester : public Agent
 {
 public:
-	void initialize() {}
-	virtual void update()override;
-	void figure_out_what_to_do();
+	Harvester(GameObject * owner):Agent(owner){
+		m_preferences.push_back(new HarvestGenericResource());
+	}
+	~Harvester()
+	{
+		for (auto it = m_preferences.begin(); it != m_preferences.end(); ++it)
+		{
+			delete *it;
+		}
+	}
 protected:
-	UnitOrder * m_current_order;
-	std::vector<UnitOrder> m_preferences;
-};
-
-class Harvester : public Unit
-{
-	std::vector<UnitOrder> m_preferences = { HarvestGenericResource() };
+	float get_update_delay() final override { return m_update_delay_ms; }
+	const float m_update_delay_ms = 1000;
+private:
 };

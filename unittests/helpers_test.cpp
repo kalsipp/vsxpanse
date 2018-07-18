@@ -2,6 +2,8 @@
 
 #include "CppUnitTestAssert.h"
 #include "basics/helpers.hpp"
+#include "basics/vector2d.hpp"
+#include "basics/vector2dint.hpp"
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace unittests
@@ -72,7 +74,69 @@ namespace unittests
 			Assert::AreEqual(x, helpers::MATH_PI, 0.01);
 			x = helpers::TO_RAD * 270;
 			Assert::AreEqual(x, 3*helpers::MATH_PI/2, 0.01);
-
 		}
+		TEST_METHOD(float_round_to_int_test)
+		{
+			float x = 4.9f;
+			int res = helpers::round_to_int(x);
+			ASSERT(res == 5, "");
+
+			x = 5.1f;
+			res = helpers::round_to_int(x);
+			ASSERT(res == 5, "");
+
+			x = 5.5f;
+			res = helpers::round_to_int(x);
+			ASSERT(res == 6, "");
+		}
+		TEST_METHOD(double_round_to_int_test)
+		{
+			double x = 4.9;
+			int res = helpers::round_to_int(x);
+			ASSERT(res == 5, "");
+
+			x = 5.1;
+			res = helpers::round_to_int(x);
+			ASSERT(res == 5, "");
+
+			x = 5.5;
+			res = helpers::round_to_int(x);
+			ASSERT(res == 6, "");
+		}
+		TEST_METHOD(Vec2Int_get_squared_distance_between_positions_test)
+		{
+			{
+				Vector2DInt origin(0, 0);
+				Vector2DInt pos(10, 10);
+				double res = helpers::get_squared_distance_between_positions(origin, pos);
+				int rs = helpers::round_to_int(res);
+				ASSERT(rs = 200, "");
+			}
+			{
+				Vector2DInt origin(0, 0);
+				Vector2DInt pos(-10, -10);
+				double res = helpers::get_squared_distance_between_positions(origin, pos);
+				int rs = helpers::round_to_int(res);
+				ASSERT(rs = 200, "");
+			}
+		}
+		TEST_METHOD(Vec2_get_squared_distance_between_positions_test)
+		{
+			{
+				Vector2D origin(0, 0);
+				Vector2D pos(10, 10);
+				double res = helpers::get_squared_distance_between_positions(origin, pos);
+				int rs = helpers::round_to_int(res);
+				ASSERT(rs = 200, "");
+			}
+			{
+				Vector2D origin(0, 0);
+				Vector2D pos(-10, -10);
+				double res = helpers::get_squared_distance_between_positions(origin, pos);
+				int rs = helpers::round_to_int(res);
+				ASSERT(rs = 200, "");
+			}
+		}
+
 	};
 }

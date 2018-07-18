@@ -11,20 +11,28 @@ bool & GameObject::enabled() {
 	return m_enabled;
 }
 
-std::vector<Component*> & GameObject::get_all_components() {
-	return m_components;
+void GameObject::setup()
+{
+	for (auto i = m_components.begin(); i != m_components.end(); ++i)
+	{
+		(*i)->setup();
+	}
 }
+
+
+void GameObject::teardown()
+{
+	for (auto i = m_components.begin(); i != m_components.end(); ++i)
+	{
+		(*i)->teardown();
+	}
+}
+
 
 void GameObject::update_components() {
 	if (!m_enabled) return;
 	for (auto i = m_components.begin(); i != m_components.end(); ++i) {
 		(*i)->update();
-	}
-}
-
-void GameObject::update_colliders() {
-	for (auto i = m_components.begin(); i != m_components.end(); ++i) {
-		(*i)->collision_step();
 	}
 }
 

@@ -39,11 +39,6 @@ void Logging::log(const std::string & text, uint8_t level) {
 #ifdef DEBUG
 	if (!m_initialized) Logging::initialize();
 
-	if (!m_loggingfiles.size()) /* If we haven't added any files create one here*/
-	{
-		add_file("tmplog.log", Logging::TRACE);
-	}
-
 	int64_t duration = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - m_start_time).count();
 	LogEntry entry(text, duration, level);
 	std::string out = Logging::fancify(entry);
@@ -76,6 +71,7 @@ void Logging::teardown() {
 	for (auto it = m_loggingfiles.begin(); it != m_loggingfiles.end(); ++it) {
 		delete *it;
 	}
+	m_loggingfiles.clear();
 #else
 #endif
 }

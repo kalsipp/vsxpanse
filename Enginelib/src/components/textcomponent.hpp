@@ -11,7 +11,7 @@
 
 class TextComponent : public Component {
 public:
-	TextComponent();
+	TextComponent(GameObject *);
 	~TextComponent();
 	void initialize(ResourceFile * file, int size = 16);
 	void set_font_size(int);

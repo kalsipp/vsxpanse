@@ -2,7 +2,6 @@
 #include "../collider.hpp"
 class BasicSquareCollider:public Collider{
 public:
-	BasicSquareCollider(const Vector2D & size);
 	void update()override;
 	std::vector<std::weak_ptr<GameObject>> get_colliding_objects();
 private:

@@ -1,15 +1,16 @@
 #pragma once
 #include <SDL.h>
 #include <iostream>
-#include <cmath>
-#include "vector3d.hpp"
 class Vector3D;
+class Vector2DInt;
 class Vector2D {
 public:
 	Vector2D();
 	Vector2D(double x, double y=0);
 	Vector2D(const Vector3D &);
+	Vector2D(const Vector2DInt & vec);
 	Vector2D & operator=(const Vector3D &);
+	Vector2D & operator+=(const Vector2D &);
 	void set(double, double);
 	void round_to_int();
 	SDL_Point get_sdl_point();

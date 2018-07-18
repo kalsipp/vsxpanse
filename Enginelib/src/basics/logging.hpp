@@ -41,8 +41,7 @@ public:
 		m_file << text << std::endl;
 		m_file.close();
 	}
-	~LoggingFile() {
-	}
+	~LoggingFile() {}
 	std::string m_filename;
 	uint8_t m_verbosity;
 	std::ofstream m_file;
@@ -70,6 +69,7 @@ public:
 	static const uint8_t ERROR;
 private:
 	Logging();
+	~Logging() {}
 	static std::string fancify(const LogEntry &);
 	static void output_to_terminal(const LogEntry &);
 	static void write_loop();

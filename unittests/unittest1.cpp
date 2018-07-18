@@ -1,10 +1,10 @@
-#include "CppUnitTest.h"
+#include "CppAgentTest.h"
 
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace Microsoft::VisualStudio::CppAgentTestFramework;
 
 namespace unittests
 {		
-	TEST_CLASS(UnitTest1)
+	TEST_CLASS(AgentTest1)
 	{
 	public:
 		

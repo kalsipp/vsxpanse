@@ -48,6 +48,7 @@ void ResourceArchive::free_item(const std::string & name)
 void ResourceArchive::read_file(const std::string & path, void ** buffer, size_t* size)
 {
 	std::ifstream file(path, std::ios::in | std::ios::binary | std::ios::ate);
+	ASSERT(file.good(), "Could not open file " + path);
 	ASSERT(file.is_open(), "Could not open file " + path);
 	*size = (size_t)file.tellg();
 	char * tmpbuf = new char[*size];

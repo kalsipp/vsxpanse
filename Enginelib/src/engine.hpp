@@ -30,23 +30,6 @@
 
 */
 
-/*
-	1. replace scene if needed
-	2. put all new gameobjects into world
-	3. remove all destroyed gameobjects from world
-	4. update inputs
-	5. user logic update
-		Usage of input. Determining movement of objects. 
-		Loading of new scenes. Changing sprites.
-	6. user physic update 
-		Movement of objects. Changing physics velocity/force.
-	7 colliders will call user logic through callbacks when 
-		collision is registered.
-	8 system physics. 
-	9. render
-*/
-
-
 class GameObject;
 class Engine {
 public:
@@ -60,7 +43,7 @@ public:
 	static gameobject_type * get_gameobject(const GAMEOBJECT_ID id);
 	static GameObject * get_gameobject(const GAMEOBJECT_ID id);
 	static void remove_gameobject(const GAMEOBJECT_ID id);
-	static unsigned long get_gameobject_count();
+	static size_t get_gameobject_count();
 	static void register_scene(const std::string & name,  void (*scenecreator)());
 	static void load_scene(const std::string & name);
 private:
@@ -69,9 +52,10 @@ private:
 	static void replace_scene();
 	static void update_gameobjects();
 	static void render_gameobjects();
-	static void sort_gameobjects(std::vector<GameObject*>& objs);
+	static void sort_gameobjects_renderorder(std::vector<GameObject*>& objs);
 	static void clear_all_gameobjects();
 	static void load_default_resources();
+	
 	/*Actually puts the changes in place*/
 	static void put_gameobjects_into_world();
 	static void remove_gameobject_from_world();
@@ -102,6 +86,7 @@ gameobject_type * Engine::add_gameobject() {
 	Engine::m_gameobjects_to_add.push(pair);
 	++Engine::m_latest_gameobject_id;
 	Logging::log("Added gameobject id " + std::to_string(id) + " type " + typeid(gameobject_type).name(), Logging::TRACE);
+	if (!m_running) put_gameobjects_into_world();
 	return new_object;
 }
 

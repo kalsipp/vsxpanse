@@ -1,6 +1,7 @@
 #include <random>
 #include "helpers.hpp"
 #include "logging.hpp"
+#include "vector2dint.hpp"
 #include <random>
 #ifdef __GNUC__
 void sig_error_handler(int sig) {
@@ -37,9 +38,9 @@ void sig_error_handler(int sig) {
 #endif
 
 
+#ifdef DEBUG
 void ASSERT(bool condition, const std::string & message)
 {
-#ifdef DEBUG
 	if (!condition)
 	{
 		Logging::log(std::stringstream() << std::endl << "Assertion: " << condition << std::endl <<
@@ -51,12 +52,8 @@ void ASSERT(bool condition, const std::string & message)
 		std::terminate();
 
 	}
-#else
-	(void)condition;
-	(void)message;
-#endif
 }
-
+#endif
 
 namespace helpers {
 	static std::random_device random_int_rd;
@@ -67,13 +64,30 @@ namespace helpers {
 	return uni(random_int_rng);
 }
 
-std::string get_filename_from_path(const std::string & path) {
-	std::size_t found = path.find_last_of("/\\");
-	if (found == std::string::npos) {
-		return "";
-	} else {
-		return path.substr(found + 1);
+	int round_to_int(float v)
+	{
+		return int(v + 0.5);
 	}
-}
+
+	int round_to_int(double v)
+	{
+		return int(v + 0.5);
+	}
+
+	double get_squared_distance_between_positions(const Vector2DInt & a, const Vector2DInt & b)
+	{
+		const double xdiff = b.x - a.x;
+		const double ydiff = b.y - a.y;
+		return xdiff * xdiff + ydiff * ydiff;
+	}
+
+	std::string get_filename_from_path(const std::string & path) {
+		std::size_t found = path.find_last_of("/\\");
+		if (found == std::string::npos) {
+			return "";
+		} else {
+			return path.substr(found + 1);
+		}
+	}
 
 }

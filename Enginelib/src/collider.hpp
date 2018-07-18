@@ -16,9 +16,8 @@ public:
 
 class Collider: public Component {
 public:
-	Collider();
-	~Collider();
-	virtual void setup(GameObject*) override;
+	Collider(GameObject*owner) :Component(owner) {}
+	virtual void setup() override;
 	virtual void update() override;
 	virtual void collision_step()override;
 	virtual void teardown()override;

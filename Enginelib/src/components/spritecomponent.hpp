@@ -1,18 +1,15 @@
 #pragma once
 #include <SDL.h>
 #include <SDL_image.h>
-//#include "../resources/engine_resource_paths.hpp"
 #include "../component.hpp"
-#include "../basics/sprite.hpp"
-#include "../basics/vector2d.hpp"
-#include "../basics/helpers.hpp"
-#include "../gameobject.hpp"
-#include "../graphicsmanager.hpp"
-#include "../basics/rect.hpp"
 
-
+class ResourceFile;
+class Rect;
+class Sprite;
+class GameObject;
 class SpriteComponent: public Component {
 public:
+	SpriteComponent(GameObject * owner):Component(owner) {}
 	~SpriteComponent();
 	void load_sprite_from_image(ResourceFile * file);
 	void load_sprite_from_image(ResourceFile * file, const Rect &);

@@ -5,8 +5,8 @@ class Collision;
 
 class Component {
 public:
-	Component() {}
-	virtual void setup (GameObject * user) {m_owner = user;}
+	Component(GameObject * user):m_owner(user) {}
+	virtual void setup () {}
 	virtual void collision_step(){}
 	virtual void update() {}
 	virtual void render() {}
@@ -17,5 +17,6 @@ public:
 	GameObject & owner(){return *(m_owner);}
 protected:
 	bool m_enabled = true;
-	GameObject * m_owner;
+
+	GameObject * const m_owner;
 };

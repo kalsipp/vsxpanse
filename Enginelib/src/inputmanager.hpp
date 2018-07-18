@@ -6,6 +6,7 @@
 #include <cstdint>
 #include <iostream>
 #include "basics/timer.hpp"
+#include "basics/vector2DInt.hpp"
 
 /* Defines when the user presses window cross
 Arbitrary value hopefully not occupied by SDL keys
@@ -64,6 +65,8 @@ public:
 	@return - false if the event has not happened yet.
 	---------------------------------------------------------*/
 	static bool get_latest_mouse_event(int mousebtn, SDL_MouseButtonEvent * evnt);
+
+	static Vector2DInt get_mouse_position();
 
 private:
 	InputManager();

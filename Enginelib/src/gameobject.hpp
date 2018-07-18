@@ -10,31 +10,66 @@ typedef unsigned long GAMEOBJECT_ID;
 #include "basics/logging.hpp"
 
 class Component;
-struct ComponentSettings;
 class GameObject {
 public:
 	GameObject(GAMEOBJECT_ID id);
 	virtual ~GameObject();
 	bool & enabled();
 
+
+	/*-------------------------------------------------------
+	Add component of type.
+	---------------------------------------------------------
+	@return pointer to the component that was just added.
+	---------------------------------------------------------*/
 	template <typename component_type>
 	component_type * add_component();
 
+
+	/*-------------------------------------------------------
+	Gets pointer to component of type.
+	Returns nullptr if GameObject does not have a component.
+	If GameObject has two of that component one of them will
+	be returned. No Guarantee which one.
+	---------------------------------------------------------
+	@return pointer to component. nullptr if no component found.
+	---------------------------------------------------------*/
 	template <class component_type>
 	component_type * get_component();
 
-	std::vector<Component*> & get_all_components();
-
-	virtual void update() {}
-	void update_components();
-	void update_colliders();
-	void render();
+	/*-------------------------------------------------------
+	Orders the removal of the GameObject. It will be removed
+	at the end of the current tick. 
+	All pointers to this GameObject
+	will then be invalid.
+	---------------------------------------------------------*/
 	void destroy();
 	Transform & transform();
 	const Transform & transform() const;
 	GAMEOBJECT_ID id()const;
 	std::string & name();
 protected:
+	friend class Engine;
+	/*-------------------------------------------------------
+	Runs all components' setups. 
+	---------------------------------------------------------*/
+	void setup();
+
+	/*-------------------------------------------------------
+	Runs all components' teardowns.
+	---------------------------------------------------------*/
+	void teardown();
+	
+	/*-------------------------------------------------------
+	Runs all components' renders.
+	---------------------------------------------------------*/
+	void render();
+	
+	/*-------------------------------------------------------
+	Runs all components' update.
+	---------------------------------------------------------*/
+	void update_components();
+
 	bool m_enabled = true;
 	std::string m_name = "NoName";
 	const GAMEOBJECT_ID m_id;
@@ -46,7 +81,7 @@ protected:
 
 template <typename component_type>
 component_type * GameObject::add_component() {
-	component_type * new_comp_type = new component_type();
+	component_type * new_comp_type = new component_type(this);
 	m_components.push_back(new_comp_type);
 	m_component_types.insert(std::make_pair(typeid(component_type).hash_code(), new_comp_type));
 	Logging::log(std::stringstream() << "Adding component " << typeid(component_type).name(), Logging::TRACE);

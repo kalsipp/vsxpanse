@@ -50,7 +50,7 @@ std::string ResourceFile::get_text() {
 	ASSERT(m_file_p, "file is null");
 	char * buf = new char[m_size];
 	int objects = 1; //It's a single object
-	int result = SDL_RWread(m_file_p, buf, m_size, objects);
+	size_t result = SDL_RWread(m_file_p, buf, m_size, objects);
 	ASSERT(result != 0, "Could parse file as text " + std::string(SDL_GetError()));
 	std::string text(buf);
 	delete buf;

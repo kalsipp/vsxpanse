@@ -1,5 +1,5 @@
-#include "CppUnitTest.h"
-#include "CppUnitTestAssert.h"
+#include <CppUnitTest.h>
+#include <CppUnitTestAssert.h>
 #define private public
 #include "basics/sprite.hpp"
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;

@@ -1,4 +1,10 @@
 #include "spritecomponent.hpp"
+#include "../basics/vector2d.hpp"
+#include "../basics/helpers.hpp"
+#include "../graphicsmanager.hpp"
+#include "../basics/rect.hpp"
+#include "../basics/sprite.hpp"
+#include "../filesystem/resourcefile.hpp"
 
 
 void SpriteComponent::load_sprite_from_image(ResourceFile * file)

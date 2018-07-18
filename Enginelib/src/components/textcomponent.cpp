@@ -1,6 +1,6 @@
 #include "textcomponent.hpp"
 
-TextComponent::TextComponent(): m_sprite(nullptr) {
+TextComponent::TextComponent(GameObject * owner): Component(owner), m_sprite(nullptr) {
 }
 
 TextComponent::~TextComponent() {

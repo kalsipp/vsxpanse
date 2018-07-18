@@ -11,28 +11,16 @@
     <Filter Include="src\map">
       <UniqueIdentifier>{816e0f0e-63b8-4867-850c-eb3e96e00406}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\gameobjects">
-      <UniqueIdentifier>{bb008cbb-d2de-412c-a71c-357bc07f1ee2}</UniqueIdentifier>
+    <Filter Include="src\components\Unit">
+      <UniqueIdentifier>{a9d67c01-07b6-40fe-8528-cc5219101f76}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\movement_cmp.hpp">
-      <Filter>src\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\playercontroller_cmp.hpp">
-      <Filter>src\components</Filter>
-    </ClInclude>
     <ClInclude Include="src\map\gridmap.hpp">
       <Filter>src\map</Filter>
-    </ClInclude>
-    <ClInclude Include="src\map\maptile.hpp">
-      <Filter>src\map</Filter>
-    </ClInclude>
-    <ClInclude Include="src\components\harvestercontroller_cmp.hpp">
-      <Filter>src\components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\resource_cmp.hpp">
       <Filter>src\components</Filter>
@@ -43,25 +31,34 @@
     <ClInclude Include="src\map\gridbackground.hpp">
       <Filter>src\map</Filter>
     </ClInclude>
+    <ClInclude Include="src\ResourceManager.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\map\astar.hpp">
+      <Filter>src\map</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\debugcomponent.hpp">
+      <Filter>src\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\harvestercontroller_cmp.hpp">
+      <Filter>src\components\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\playercontroller_cmp.hpp">
+      <Filter>src\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\agent.hpp">
+      <Filter>src\components\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\agentorder.hpp">
+      <Filter>src\components\Unit</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\components\movement_cmp.cpp">
-      <Filter>src\components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\components\playercontroller_cmp.cpp">
-      <Filter>src\components</Filter>
-    </ClCompile>
     <ClCompile Include="src\map\gridmap.cpp">
       <Filter>src\map</Filter>
-    </ClCompile>
-    <ClCompile Include="src\map\maptile.cpp">
-      <Filter>src\map</Filter>
-    </ClCompile>
-    <ClCompile Include="src\components\harvestercontroller_cmp.cpp">
-      <Filter>src\components</Filter>
     </ClCompile>
     <ClCompile Include="src\components\resource_cmp.cpp">
       <Filter>src\components</Filter>
@@ -71,6 +68,27 @@
     </ClCompile>
     <ClCompile Include="src\map\gridbackground.cpp">
       <Filter>src\map</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ResourceManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\map\astar.cpp">
+      <Filter>src\map</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\debugcomponent.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\harvestercontroller_cmp.cpp">
+      <Filter>src\components\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\playercontroller_cmp.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\agent.cpp">
+      <Filter>src\components\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\agentorder.cpp">
+      <Filter>src\components\Unit</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

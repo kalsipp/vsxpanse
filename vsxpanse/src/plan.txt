@@ -1,8 +1,9 @@
+Plan 1:
 PlayerController manages the player unit's movement/shooting etc.
 GuiControl manages the players mouse controls, such as giving orders and such.
 
-Base class Unit.
-	Units can take orders 
+Base class Agent.
+	Agents can take orders 
 	Order may be to harvest resources.
 	Player will click resource, which GuiControl parses. 
 	This then needs to be transferred to the units somehow
@@ -15,7 +16,7 @@ some condition is fulfilled (out of resources) or if it's unassigned.
 	Need to figure out ways to unassign all unique orders.
 	All units will do the same thing.
 
-3. Units are not given order, but preferences of what order they like. An iron harvester will go and harvest iron. 
+3. Agents are not given order, but preferences of what order they like. An iron harvester will go and harvest iron. 
 	Dwarf fortress style
 	More automated.
 	Less control. Might lead to frustration. 
@@ -31,3 +32,53 @@ When a unit has to figure out the next thing to do, like if it should gather a r
 		This raises the question of what should be the central point. 
 		How does Dwarf Fortress do this? Possibly from the current "town hall". If this is robot-based, then it could be some kind of "communications core".
 
+
+
+Gridmap and astar
+Very important with speed. 
+a: 
+	Create AStarUser component. Each unit uses that to get the path (queue of positions).
+	AStarUser component in turn needs to find it's path in GridMap. 
+	GridMap can contain all information such as each AStarNode and their costs. 
+
+
+
+Plan2:
+
+There is no player character. The player is in godview/strategy view.
+
+Base class Agent is a component and acts as a generic agent interface. 
+
+Gameloop:
+Start with one harvester that gathers iron
+One gatherer that picks up the iron and moves it to a smelter
+One mover that picks up the iron from the smelter and to the seller which generates cash.
+Cash is the main progress reference. Cash unlocks new things, new unit/components for units. New ways of managing these units.
+
+Eventually the player has enough cash to buy the ability to create new drones. This requires iron. 
+User puts dronefactory down somewhere and says that it wants to build a drone. 
+The moverdrone will then prioritize the build above selling and put iron in the factory. 
+Once the factory has 10 units it will consume them and start building a drone. 
+Once the harvester has again filled 10 more units (which are now not consumed since a drone build is in action) 
+it returns to dumping iron in the seller. One the drone is built this repeats.
+
+The player then seeks resource aboundance. 
+
+Drones:
+   	Drones are a subclass of Agents. 
+   	They have the roles of Harvesting resources, gathering those resources and moving them to their designated spots.
+   	They should also be able to defend themselves, or attack.
+
+   	To make drones interesting they should be customizable by the player, and follow a simple subset of AI rules. 
+   	If a drone is equipped with a miner it can mine. 
+   	If a mining drone has enough cargo for one iron ore, it will also haul it. 
+
+   	How does a drone know what to do?:
+   		A: 
+   			Part of the drone design is to designate an AI-core which will decide what the drone will do. 
+   			Example is "Combat core", "Gatherer/Hauler core", "Miner core". It will then do those designated tasks. 
+
+   			But how does it then know EXACTLY what to do. Like which ore to mine, where to haul what. 
+
+   			Maybe the player just designates "I want this ore to be mined" and the miners just pick the closest one to the centre.
+   			The same with moving. The player just designates buildings to "I want this material" and the haulers fixes it.

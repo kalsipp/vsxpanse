@@ -48,13 +48,12 @@ namespace EditorWindow.src
                     // to the 768th megabyte (the offset plus length). 
                     using (var accessor = mmf.CreateViewAccessor(10, 42))
                     {
-                        int val = 20;
 
                         // Make changes to the view. 
-                            accessor.Read(0, out val);
-                            val += 2;
-                            Console.WriteLine(val);
-                            accessor.Write(0, ref val);
+                        accessor.Read(0, out int val);
+                        val += 2;
+                        Console.WriteLine(val);
+                        accessor.Write(0, ref val);
                         
                     }
                 }
