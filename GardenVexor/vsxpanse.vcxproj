@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{4C4067C5-61D3-4A3A-903A-86E508B740DF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>vsxpanse</RootNamespace>
+    <RootNamespace>GardenVexor</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
     <ProjectName>GardenVexor</ProjectName>
   </PropertyGroup>

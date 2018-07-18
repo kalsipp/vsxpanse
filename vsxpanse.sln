@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2018
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GardenVexor", "vsxpanse\vsxpanse.vcxproj", "{4C4067C5-61D3-4A3A-903A-86E508B740DF}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GardenVexor", "GardenVexor\vsxpanse.vcxproj", "{4C4067C5-61D3-4A3A-903A-86E508B740DF}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Enginelib", "Enginelib\Enginelib.vcxproj", "{B96BF295-01C3-493F-A2AA-3858E94AFBCC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineLib_unittests", "unittests\unittests.vcxproj", "{3FA0FC5C-53EC-430F-B6C5-C1140FD604DF}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineLib_unittests", "Enginelib_unittests\unittests.vcxproj", "{3FA0FC5C-53EC-430F-B6C5-C1140FD604DF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EditorWindow", "EditorWindow\EditorWindow.csproj", "{ECEBEC62-0089-4737-ABFD-5D954AE39CDD}"
 EndProject

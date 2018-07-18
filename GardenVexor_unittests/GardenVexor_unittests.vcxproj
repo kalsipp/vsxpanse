@@ -77,20 +77,20 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\include;C:\Users\marti\source\repos\vsxpanse\Enginelib\src;C:\Users\marti\source\repos\vsxpanse\vsxpanse\src;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\include;C:\Users\marti\source\repos\vsxpanse\Enginelib\src;C:\Users\marti\source\repos\vsxpanse\GardenVexor\src;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\lib\x64;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\lib\x64;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\include;C:\Users\marti\source\repos\vsxpanse\Enginelib\src;C:\Users\marti\source\repos\vsxpanse\vsxpanse\src;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\include;C:\Users\marti\source\repos\vsxpanse\Enginelib\src;C:\Users\marti\source\repos\vsxpanse\GardenVexor\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\include;C:\Users\marti\source\repos\vsxpanse\Enginelib\src;C:\Users\marti\source\repos\vsxpanse\vsxpanse\src;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\include;C:\Users\marti\source\repos\vsxpanse\Enginelib\src;C:\Users\marti\source\repos\vsxpanse\GardenVexor\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\include;C:\Users\marti\source\repos\vsxpanse\Enginelib\src;C:\Users\marti\source\repos\vsxpanse\vsxpanse\src;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\include;C:\Users\marti\source\repos\vsxpanse\Enginelib\src;C:\Users\marti\source\repos\vsxpanse\GardenVexor\src;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\lib\x64;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\lib\x64;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -183,7 +183,7 @@
     <ProjectReference Include="..\Enginelib\Enginelib.vcxproj">
       <Project>{b96bf295-01c3-493f-a2aa-3858e94afbcc}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\vsxpanse\vsxpanse.vcxproj">
+    <ProjectReference Include="..\GardenVexor\vsxpanse.vcxproj">
       <Project>{4c4067c5-61d3-4a3a-903a-86e508b740df}</Project>
     </ProjectReference>
   </ItemGroup>
