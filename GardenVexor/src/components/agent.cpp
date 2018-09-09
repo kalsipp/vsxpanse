@@ -1,15 +1,14 @@
 #include "agent.hpp"
-#include "../map/gridmap.hpp"
-
 
 void Agent::setup() 
 { 
-	GridMap::register_unit(&owner(), m_solid); 
+	m_gridcomponent = owner().get_component<GridMapUser>();
 }
 
 bool Agent::move(const Vector2DInt & to)
 {
-	return GridMap::move_unit(&(owner()), to, m_solid);
+	if (m_gridcomponent == nullptr) return false;
+	return m_gridcomponent->move_in_grid(to);
 }
 
 void Agent::update()
@@ -43,3 +42,5 @@ void Agent::figure_out_what_to_do()
 		}
 	}
 }
+
+GridMapUser * Agent::gridcomponent() { return m_gridcomponent; }

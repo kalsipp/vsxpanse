@@ -31,7 +31,7 @@ ResourceFile * ResourceArchive::get_item(const std::string & name)
 #else // RESOURCE_USING_ZIP
 		read_file(path, &contents, &filesize);
 #endif // RESOURCE_USING_ZIP
-		ResourceFile * file = new ResourceFile(contents, filesize);
+		ResourceFile * file = new ResourceFile(contents, (uint)filesize);
 		m_files[name] = file;
 	}
 	return m_files[name];

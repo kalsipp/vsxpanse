@@ -17,6 +17,22 @@ Vector2D & Vector2D::operator+=(const Vector2D & other)
 	y += other.y;
 	return *this;
 }
+
+Vector2D Vector2D::operator-(const Vector2D & other)const
+{
+	return Vector2D(x - other.x, y - other.y);
+}
+
+double Vector2D::magnitude()const
+{
+	return sqrt(x*x + y*y);
+}
+
+double Vector2D::magnitude_squared() const
+{
+	return x * x + y * y;
+}
+
 void Vector2D::set(double _x, double _y) {
 	x = _x;
 	y = _y;

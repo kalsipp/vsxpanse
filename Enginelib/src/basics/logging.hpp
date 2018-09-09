@@ -37,9 +37,11 @@ public:
 		m_file.close();
 	}
 	void write(const std::string & text) {
+#if 0
 		m_file.open(m_filename, std::ios::app);
 		m_file << text << std::endl;
 		m_file.close();
+#endif
 	}
 	~LoggingFile() {}
 	std::string m_filename;

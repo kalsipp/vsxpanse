@@ -38,6 +38,9 @@
     <ClCompile Include="gameobject_test.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="engine_test.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Font Include="calibri.ttf">

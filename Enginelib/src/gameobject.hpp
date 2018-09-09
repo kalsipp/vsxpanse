@@ -14,8 +14,13 @@ class GameObject {
 public:
 	GameObject(GAMEOBJECT_ID id);
 	virtual ~GameObject();
-	bool & enabled();
 
+	/*-------------------------------------------------------
+	Get/Set if the gameobject is enabled.
+	---------------------------------------------------------
+	@return reference to if the variable is enabled.
+	---------------------------------------------------------*/
+	bool & enabled();
 
 	/*-------------------------------------------------------
 	Add component of type.
@@ -70,11 +75,14 @@ protected:
 	---------------------------------------------------------*/
 	void update_components();
 
+	void update_collision();
+
 	bool m_enabled = true;
+	bool m_dynamic = true;
 	std::string m_name = "NoName";
 	const GAMEOBJECT_ID m_id;
 	std::vector<Component*> m_components;
-	std::multimap<size_t, Component*> m_component_types;
+	//std::multimap<size_t, Component*> m_component_types;
 	Transform m_transform;
 };
 
@@ -83,17 +91,21 @@ template <typename component_type>
 component_type * GameObject::add_component() {
 	component_type * new_comp_type = new component_type(this);
 	m_components.push_back(new_comp_type);
-	m_component_types.insert(std::make_pair(typeid(component_type).hash_code(), new_comp_type));
+	//m_component_types.insert(std::make_pair(typeid(component_type).hash_code(), new_comp_type));
 	Logging::log(std::stringstream() << "Adding component " << typeid(component_type).name(), Logging::TRACE);
 	return new_comp_type;
 }
 
 template <class component_type>
 component_type * GameObject::get_component() {
-	auto iter = m_component_types.find(typeid(component_type).hash_code());
-	if (iter != m_component_types.end()) {
-		return (component_type*)(iter->second);
-	} else {
-		return nullptr;
+
+	for (auto it = m_components.begin(); it != m_components.end(); ++it)
+	{
+		component_type* comp_cast = dynamic_cast<component_type*>(*it);
+		if (comp_cast)
+		{
+			return comp_cast;
+		}
 	}
+	return nullptr;
 }

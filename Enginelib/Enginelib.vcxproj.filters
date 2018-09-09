@@ -85,6 +85,12 @@
     <ClInclude Include="src\basics\vector2dint.hpp">
       <Filter>src\basics</Filter>
     </ClInclude>
+    <ClInclude Include="src\components\circlecollider.hpp">
+      <Filter>src\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\physxengine.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\graphicsmanager.cpp">
@@ -149,6 +155,12 @@
     </ClCompile>
     <ClCompile Include="src\basics\vector2dint.cpp">
       <Filter>src\basics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\circlecollider.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\physxengine.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

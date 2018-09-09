@@ -1,59 +1,33 @@
+#include <algorithm>
 #include "collider.hpp"
+#include "physxengine.hpp"
 
-std::vector<Collider*> Collider::m_all_colliders;
+
+bool Collision::operator==(const Collision & other)const
+{
+	return other.m_other_collidee == m_other_collidee;
+}
 
 
 void Collider::setup() {
-	register_collider(this);
+	register_collider();
 }
 
-void Collider::update() {
-	m_newly_registered_collisions.clear();
+void Collider::notify_collision(const Collision & coll)
+{
+	m_collisions.push_back(coll);
 }
 
-void Collider::collision_step() {
-	for (auto it_coll = m_all_colliders.begin();
-	        it_coll != m_all_colliders.end(); ++it_coll) {
-		auto sh_coll = *it_coll;
-		ASSERT(sh_coll, "Collider is null");
-		if (!sh_coll->already_colliding(this)) {
-			if (sh_coll->collides_with(this)) {
-				sh_coll->notify_collision(this);
-				m_newly_registered_collisions.insert((*it_coll));
-				ASSERT(false, "Add callback func");
-			}
-		}
-	}
-}
-
-void Collider::notify_collision(Collider*  coll) {
-	m_newly_registered_collisions.insert(coll);
-}
-
-bool Collider::already_colliding(Collider * coll) {
-	return m_newly_registered_collisions.find(coll) != m_newly_registered_collisions.end();
+void Collider::clear_collisions()
+{
+	m_collisions.clear();
 }
 
 void Collider::teardown() {
-	unregister_collider(m_me);
+	unregister_collider();
 }
 
-const std::vector<GameObject*> & Collider::get_colliding_objects() {
-	return m_colliding_objects;
+const std::vector<Collision> & Collider::get_collisions() {
+	return m_collisions;
 }
 
-void Collider::register_collider(Collider* item) {
-	m_all_colliders.push_back(item);
-}
-
-void Collider::unregister_collider(Collider* item) {
-	auto current = m_all_colliders.begin();
-	while (current != m_all_colliders.end()) {
-		ASSERT(*current, "Collider is null in unregister");
-		if (*current == item) {
-			m_all_colliders.erase(current);
-			return;
-		}
-	}
-	ASSERT(false, "Could not unregister collider");
-}

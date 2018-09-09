@@ -10,52 +10,41 @@ bool HarvestGenericResource::execute(Agent* unit)
 	if (m_target_resource == nullptr)
 	{
 		find_resource();
+		/* If we still don't have any resource to gather, we're done */
+		if (m_target_resource == nullptr) return DONE;
 	}
 
-	if (m_target_resource != nullptr)
+	GridMapUser * gridcomponent = unit->gridcomponent();
+	ASSERT(gridcomponent, "Gridcomponent is null");
+	if (unit->owner().transform().get_position() == m_target_resource->owner().transform().get_position())
 	{
-		
-		if (unit->owner().transform().get_position() == m_target_resource->owner().transform().get_position())
-		{
-			m_target_resource->gather();
-		}
-		else
-		{
-			/* We are not at the resource, move find a path to it and start moving towards it  */
-			if (m_movement_stack.empty())
-			{
-				Astar::get_path(unit->owner().transform().get_position(),
-					m_target_resource->owner().transform().get_position(),
-					m_movement_stack);
-			}
-
-			if (unit->owner().transform().get_position() == m_current_movement_target)
-			{
-				if (!m_movement_stack.empty())
-				{
-					m_current_movement_target = m_movement_stack.top();
-					m_movement_stack.pop();
-				}
-			}
-			bool success = unit->move(m_current_movement_target);
-			/* There was something in the way, recalculate path next round */
-			if (!success)
-			{
-				while (!m_movement_stack.empty())
-				{
-					m_movement_stack.pop();
-				}
-			}
-
-		}
-		/* We did something this update, so we're not done */
-		return NOT_DONE;
+		m_target_resource->gather();
 	}
 	else
 	{
-		/* If we still don't have any resource to gather, we're done */
-		return DONE;
+		/* We are not at the resource, move find a path to it and start moving towards it  */
+		bool have_valid_path = true;
+		if (gridcomponent->get_num_pathfinder_steps_left() == 0)
+		{
+			have_valid_path = gridcomponent->calculate_path(m_target_resource->owner().transform().get_position());
+		}
+
+		/* We are at the current step, start moving towards the next step */
+		if (have_valid_path)
+		{
+			MOVEMENT_STATUS status= gridcomponent->move_to_next_pathfinder_step();
+			if (status != SUCCESSFUL_MOVE)
+			{
+				gridcomponent->clear_pathfinder_path();
+			}
+		}
+
+		/* There was something in the way, recalculate path next round */
+
 	}
+
+	/* We did something this update, so we're not done */
+	return NOT_DONE;
 }
 
 void HarvestGenericResource::find_resource()

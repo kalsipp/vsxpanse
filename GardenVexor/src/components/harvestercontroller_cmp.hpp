@@ -14,7 +14,6 @@ public:
 private:
 	void find_resource();
 	ResourceCmp * m_target_resource = nullptr;
-	std::stack<Vector2DInt> m_movement_stack;
 	Vector2DInt m_current_movement_target;
 };
 

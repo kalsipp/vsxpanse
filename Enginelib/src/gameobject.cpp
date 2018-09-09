@@ -29,6 +29,16 @@ void GameObject::teardown()
 }
 
 
+
+void GameObject::update_collision()
+{
+	if (!m_enabled) return;
+	for (auto i = m_components.begin(); i != m_components.end(); ++i)
+	{
+		(*i)->collision_step();
+	}
+}
+
 void GameObject::update_components() {
 	if (!m_enabled) return;
 	for (auto i = m_components.begin(); i != m_components.end(); ++i) {
@@ -45,7 +55,7 @@ void GameObject::render() {
 }
 
 void GameObject::destroy() {
-	Engine::remove_gameobject(m_id);
+	Engine::remove_gameobject(this);
 }
 
 Transform & GameObject::transform() {

@@ -52,6 +52,12 @@
     <ClInclude Include="src\components\agentorder.hpp">
       <Filter>src\components\Unit</Filter>
     </ClInclude>
+    <ClInclude Include="src\components\gridmapuser.hpp">
+      <Filter>src\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\roamrandomlycontrol_cmp.hpp">
+      <Filter>src\components\Unit</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -88,6 +94,12 @@
       <Filter>src\components\Unit</Filter>
     </ClCompile>
     <ClCompile Include="src\components\agentorder.cpp">
+      <Filter>src\components\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\gridmapuser.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\roamrandomlycontrol_cmp.cpp">
       <Filter>src\components\Unit</Filter>
     </ClCompile>
   </ItemGroup>

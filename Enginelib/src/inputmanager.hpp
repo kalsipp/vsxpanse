@@ -8,11 +8,15 @@
 #include "basics/timer.hpp"
 #include "basics/vector2DInt.hpp"
 
+/* Should be slightly higher than the highest possible Scancode 
+   (284 at time of writing)
+*/
+#define NOF_SDL_SCANCODES_BUFFER 300
+
 /* Defines when the user presses window cross
 Arbitrary value hopefully not occupied by SDL keys
 */
-#define INPUT_KEY_QUIT  9999
-
+#define INPUT_KEY_QUIT  (NOF_SDL_SCANCODES_BUFFER-1)
 /*-------------------------------------------------------
 	Interface for key and mouse presses
 	Uses SDL_Scancodes https://wiki.libsdl.org/SDL_Scancode as key definitions.
@@ -76,14 +80,12 @@ private:
 	static void reset_text_input();
 	static void set_mouse(int key, bool value, const SDL_MouseButtonEvent & evnt);
 	static std::string m_text_input;
-	static std::map<int, bool> m_key_states_current; //Contains if the key was added frame
 	static bool m_initialized;
 	static bool m_mouse_state;
 	static SDL_Event m_sdl_event;
-	static std::map<int, bool> m_key_states;
-	static std::map<int, bool> m_mouse_states;
-	static std::map<int, bool> m_mouse_states_current;
-	static std::map<int, SDL_MouseButtonEvent> m_mouse_latest_event;
-	//Testing only
-	friend void inputmanager_test();
+	static bool m_key_states[NOF_SDL_SCANCODES_BUFFER];
+	static bool m_mouse_states[NOF_SDL_SCANCODES_BUFFER];
+	static bool m_mouse_states_current[NOF_SDL_SCANCODES_BUFFER];
+	static SDL_MouseButtonEvent m_mouse_latest_event[NOF_SDL_SCANCODES_BUFFER];
+	static bool m_key_states_current[NOF_SDL_SCANCODES_BUFFER]; //Contains if the key was added this frame
 };

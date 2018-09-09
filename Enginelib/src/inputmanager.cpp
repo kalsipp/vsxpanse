@@ -3,15 +3,14 @@
 /*-------------------------------------------------------
 	Parameters.
 ---------------------------------------------------------*/
-
 bool InputManager::m_initialized = false;
 std::string InputManager::m_text_input = "";
-std::map<int, bool> InputManager::m_key_states_current;
-std::map<int, bool> InputManager::m_mouse_states;
-std::map<int, bool> InputManager::m_mouse_states_current;
-std::map<int, SDL_MouseButtonEvent> InputManager::m_mouse_latest_event;
+bool InputManager::m_key_states[NOF_SDL_SCANCODES_BUFFER] = { 0 };
+bool InputManager::m_mouse_states[NOF_SDL_SCANCODES_BUFFER] = { 0 };
+bool InputManager::m_mouse_states_current[NOF_SDL_SCANCODES_BUFFER] = { 0 };
+SDL_MouseButtonEvent InputManager::m_mouse_latest_event[NOF_SDL_SCANCODES_BUFFER] = {{ 0 }};
 SDL_Event InputManager::m_sdl_event;
-std::map<int, bool> InputManager::m_key_states;
+bool InputManager::m_key_states_current[NOF_SDL_SCANCODES_BUFFER]; 
 
 /*Publics*/
 void InputManager::initialize() {
@@ -59,32 +58,29 @@ void InputManager::read_inputs() {
 }
 
 bool InputManager::get_key(int key) {
-	if(!m_key_states.count(key)) return false;
 	return m_key_states[key];
 }
 bool InputManager::get_key_down(int key) {
-	if (InputManager::m_key_states_current.count(key) == 0) return false;
 	return InputManager::m_key_states_current[key];
 }
 
 bool InputManager::get_mouse(int mousebtn)
 {
-	if (InputManager::m_mouse_states.count(mousebtn) == 0) return false;
 	return InputManager::m_mouse_states[mousebtn];
 }
 
 bool InputManager::get_mouse_down(int mousebtn)
 {
-	if (InputManager::m_mouse_states_current.count(mousebtn) == 0) return false;
 	return InputManager::m_mouse_states_current[mousebtn];
 }
 bool InputManager::get_latest_mouse_event(int mousebtn, SDL_MouseButtonEvent * evnt)
 {
-	if (m_mouse_latest_event.count(mousebtn))
+	if (m_mouse_latest_event[mousebtn].type != 0)
 	{
 		*evnt = m_mouse_latest_event[mousebtn];
 		return true;
-	}else
+	}
+	else
 	{
 		return false;
 	}
@@ -105,8 +101,8 @@ void InputManager::set_key(int key, bool val) {
 }
 
 void InputManager::reset_keys() {
-	InputManager::m_key_states_current.clear();
-	InputManager::m_mouse_states_current.clear();
+	memset(m_key_states_current, 0, sizeof(m_key_states_current));
+	memset(m_mouse_states_current, 0, sizeof(m_mouse_states_current));
 }
 
 void InputManager::add_text_input(const std::string & text) {

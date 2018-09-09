@@ -182,6 +182,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="engine_test.cpp" />
     <ClCompile Include="gameobject_test.cpp" />
     <ClCompile Include="graphicsmanager_test.cpp" />
     <ClCompile Include="rect_test.cpp" />

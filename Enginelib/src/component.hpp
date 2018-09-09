@@ -1,7 +1,6 @@
 #pragma once
 #include "gameobject.hpp"
 class GameObject;
-class Collision;
 
 class Component {
 public:
@@ -13,8 +12,9 @@ public:
 	virtual void teardown() {}
 	virtual ~Component() {}
 	bool & enabled();
-	virtual void on_collision(const Collision & coll){(void)coll;}
-	GameObject & owner(){return *(m_owner);}
+	//virtual void on_collision(const Collision & coll){(void)coll;}
+	GameObject & owner() { return *(m_owner); }
+	const GameObject & owner()const {return *(m_owner);}
 protected:
 	bool m_enabled = true;
 

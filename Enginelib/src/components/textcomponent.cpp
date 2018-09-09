@@ -26,6 +26,10 @@ std::string TextComponent::get_text() {
 
 void TextComponent::set_text(const std::string & text) {
 	m_text = text;
+	if (m_sprite.get_sdl_texture() != nullptr)
+	{
+		GraphicsManager::destroy_texture(m_sprite.get_sdl_texture());
+	}
 	m_sprite = Sprite(GraphicsManager::get_texture_from_text(m_text, m_font, m_color));
 	ASSERT(m_sprite.get_sdl_texture(), "Could not set text " + std::string(SDL_GetError()));
 }
@@ -35,7 +39,8 @@ void TextComponent::set_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a) {
 }
 
 void TextComponent::render() {
-	ASSERT(m_sprite.get_sdl_texture(), "This is apparently zero now");
+	//ASSERT(m_sprite.get_sdl_texture(), "This is apparently zero now");
+	if (m_sprite.get_sdl_texture() == nullptr) return;
 	GraphicsManager::render_texture(
 	    m_sprite,
 	    Vector2D(m_owner->transform().get_position()),

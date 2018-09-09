@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -187,12 +187,14 @@ xcopy /y /d /s  "$(ProjectDir)Resources" "$(OutDir)Resources\"</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\components\debugcomponent.hpp" />
+    <ClInclude Include="src\components\gridmapuser.hpp" />
     <ClInclude Include="src\components\guicontrol_cmp.hpp" />
     <ClInclude Include="src\components\harvestercontroller_cmp.hpp" />
     <ClInclude Include="src\components\playercontroller_cmp.hpp" />
     <ClInclude Include="src\components\resource_cmp.hpp" />
     <ClInclude Include="src\components\agent.hpp" />
     <ClInclude Include="src\components\agentorder.hpp" />
+    <ClInclude Include="src\components\roamrandomlycontrol_cmp.hpp" />
     <ClInclude Include="src\map\astar.hpp" />
     <ClInclude Include="src\map\gridbackground.hpp" />
     <ClInclude Include="src\map\gridmap.hpp" />
@@ -206,12 +208,14 @@ xcopy /y /d /s  "$(ProjectDir)Resources" "$(OutDir)Resources\"</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\components\debugcomponent.cpp" />
+    <ClCompile Include="src\components\gridmapuser.cpp" />
     <ClCompile Include="src\components\guicontrol_cmp.cpp" />
     <ClCompile Include="src\components\harvestercontroller_cmp.cpp" />
     <ClCompile Include="src\components\playercontroller_cmp.cpp" />
     <ClCompile Include="src\components\resource_cmp.cpp" />
     <ClCompile Include="src\components\agent.cpp" />
     <ClCompile Include="src\components\agentorder.cpp" />
+    <ClCompile Include="src\components\roamrandomlycontrol_cmp.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\map\astar.cpp" />
     <ClCompile Include="src\map\gridbackground.cpp" />

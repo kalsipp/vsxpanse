@@ -26,11 +26,13 @@ public:
 	                           const double angle,
 	                           bool centered,
 	                           const SDL_RendererFlip flip);
+	static void render_circle(const Vector2D & pos, int radius);
 	static void execute_rendering();
 	static SDL_Texture * load_texture(ResourceFile * file);
 	static SDL_Texture * get_texture(ResourceFile * file);
 	static SDL_Texture * get_texture_from_text(const std::string &, TTF_Font*, SDL_Color&);
-	
+	static void set_render_draw_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
+	static void destroy_texture(SDL_Texture * text);
 	/*-------------------------------------------------------
 		Converts the surface to an SDL_Texture.
 		Note that GraphicsManager does not own the returned
@@ -50,7 +52,7 @@ private:
 	static SDL_Window * m_main_window;
 	static SDL_Surface * m_main_surface;
 	static SDL_Renderer * m_main_renderer;
-	static SDL_Color render_draw_color;
+	static SDL_Color m_render_draw_color;
 	static unsigned int m_screen_width;
 	static unsigned int m_screen_height;
 	static std::string m_window_name;

@@ -56,6 +56,7 @@ namespace helpers {
 	@param max, inclusive
 	@return result
 	---------------------------------------------------------*/
+	
 	int random_int(int min, int max);
 
 	/*-------------------------------------------------------
@@ -65,6 +66,7 @@ namespace helpers {
 	@param path
 	@return filename
 	---------------------------------------------------------*/
+	
 	std::string get_filename_from_path(const std::string & path);
 
 	/*-------------------------------------------------------
@@ -76,7 +78,9 @@ namespace helpers {
 	@param v - floating point value
 	@return closest integer.
 	---------------------------------------------------------*/
+	
 	int round_to_int(float v);
+	
 	int round_to_int(double v);
 
 	/*-------------------------------------------------------
@@ -87,6 +91,7 @@ namespace helpers {
 	@param b - the other position
 	@return - distance between the two positions
 	---------------------------------------------------------*/
+	
 	double get_squared_distance_between_positions(const Vector2DInt & a, const Vector2DInt & b);
 
 	/*-------------------------------------------------------

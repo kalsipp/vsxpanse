@@ -96,9 +96,10 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_SCL_SECURE_NO_WARNINGS;_DEBUG;_LIB;DEBUG;%(PreprocessorDefinitions);_SCL_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DEBUG;WIN32;_SCL_SECURE_NO_WARNINGS;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <ForcedIncludeFiles>%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <AssemblerOutput>All</AssemblerOutput>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -115,8 +116,10 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions);DEBUG;D_SCL_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DEBUG;_DEBUG;_LIB;%(PreprocessorDefinitions);D_SCL_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AssemblerOutput>All</AssemblerOutput>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -130,13 +133,14 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_SCL_SECURE_NO_WARNINGS;NDEBUG;_LIB;%(PreprocessorDefinitions);D_SCL_SECURE_NO_WARNINGS;D_SCL_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AssemblerOutput>All</AssemblerOutput>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -149,12 +153,15 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions);D_SCL_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AssemblerOutput>All</AssemblerOutput>
+      <ExpandAttributedSource>false</ExpandAttributedSource>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -178,6 +185,7 @@
     <ClInclude Include="src\collider.hpp" />
     <ClInclude Include="src\component.hpp" />
     <ClInclude Include="src\components\basicsquarecollider.hpp" />
+    <ClInclude Include="src\components\circlecollider.hpp" />
     <ClInclude Include="src\components\debug_closegamecomponent.hpp" />
     <ClInclude Include="src\components\spritecomponent.hpp" />
     <ClInclude Include="src\components\textcomponent.hpp" />
@@ -189,6 +197,7 @@
     <ClInclude Include="src\gameobject.hpp" />
     <ClInclude Include="src\graphicsmanager.hpp" />
     <ClInclude Include="src\inputmanager.hpp" />
+    <ClInclude Include="src\physxengine.hpp" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
@@ -203,6 +212,7 @@
     <ClCompile Include="src\collider.cpp" />
     <ClCompile Include="src\component.cpp" />
     <ClCompile Include="src\components\basicsquarecollider.cpp" />
+    <ClCompile Include="src\components\circlecollider.cpp" />
     <ClCompile Include="src\components\spritecomponent.cpp" />
     <ClCompile Include="src\components\textcomponent.cpp" />
     <ClCompile Include="src\components\transform.cpp" />
@@ -213,6 +223,7 @@
     <ClCompile Include="src\gameobject.cpp" />
     <ClCompile Include="src\graphicsmanager.cpp" />
     <ClCompile Include="src\inputmanager.cpp" />
+    <ClCompile Include="src\physxengine.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

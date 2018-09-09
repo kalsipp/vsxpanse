@@ -41,8 +41,8 @@ public:
 	static gameobject_type* add_gameobject();
 	template <class gameobject_type>
 	static gameobject_type * get_gameobject(const GAMEOBJECT_ID id);
-	static GameObject * get_gameobject(const GAMEOBJECT_ID id);
-	static void remove_gameobject(const GAMEOBJECT_ID id);
+	//static GameObject * get_gameobject(const GAMEOBJECT_ID id);
+	static void remove_gameobject(GameObject * gObj);
 	static size_t get_gameobject_count();
 	static void register_scene(const std::string & name,  void (*scenecreator)());
 	static void load_scene(const std::string & name);
@@ -68,9 +68,11 @@ private:
 
 	static bool m_running;
 	static bool m_initialized;
-	static std::map<GAMEOBJECT_ID, GameObject*> m_gameobjects;
-	static std::queue<std::pair<GAMEOBJECT_ID, GameObject*>> m_gameobjects_to_add;
-	static std::queue<GAMEOBJECT_ID> m_gameobjects_to_remove;
+	//static std::map<GAMEOBJECT_ID, GameObject*> m_gameobjects;
+	//static std::queue<std::pair<GAMEOBJECT_ID, GameObject*>> m_gameobjects_to_add;
+	static std::vector<GameObject *> m_gameobjects;
+	static std::queue<GameObject*> m_gameobjects_to_add;
+	static std::vector<GameObject*> m_gameobjects_to_remove;
 	static GAMEOBJECT_ID m_latest_gameobject_id;
 	static ResourceArchive m_engine_resources;
 };
@@ -82,9 +84,9 @@ gameobject_type * Engine::add_gameobject() {
 	if (Engine::m_latest_gameobject_id == std::numeric_limits<int>::max()) {
 		Logging::log("Warning, gameobject id overflow", Logging::WARNING);
 	}
-	std::pair<GAMEOBJECT_ID, GameObject *> pair = std::make_pair(id, new_object);
-	Engine::m_gameobjects_to_add.push(pair);
-	++Engine::m_latest_gameobject_id;
+	//std::pair<GAMEOBJECT_ID, GameObject *> pair = std::make_pair(id, new_object);
+	Engine::m_gameobjects_to_add.push(new_object);
+	Engine::m_latest_gameobject_id++;
 	Logging::log("Added gameobject id " + std::to_string(id) + " type " + typeid(gameobject_type).name(), Logging::TRACE);
 	if (!m_running) put_gameobjects_into_world();
 	return new_object;

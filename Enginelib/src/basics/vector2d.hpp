@@ -11,6 +11,11 @@ public:
 	Vector2D(const Vector2DInt & vec);
 	Vector2D & operator=(const Vector3D &);
 	Vector2D & operator+=(const Vector2D &);
+	Vector2D operator-(const Vector2D & other)const;
+	template <typename multiplier_type>
+	Vector2D operator*(const multiplier_type& value);
+	double magnitude()const;
+	double magnitude_squared()const;
 	void set(double, double);
 	void round_to_int();
 	SDL_Point get_sdl_point();
@@ -18,5 +23,11 @@ public:
 	double y = 0;
 	friend std::ostream & operator <<(std::ostream & stream, const Vector2D &);
 private:
-
+	
 };
+
+template<typename multiplier_type>
+inline Vector2D Vector2D::operator*(const multiplier_type & value)
+{	
+	return Vector2D(x*value, y*value);
+}

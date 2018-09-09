@@ -1,36 +1,30 @@
 #pragma once
-#include <memory>
-#include <algorithm>
-#include <map>
-#include <set>
 #include "component.hpp"
 
 class GameObject;
 
 class Collider;
-class Collision {
-public:
-	Collision(Collider*, GameObject*);
-	Collider* m_collider;
+struct Collision {
+	Collider* m_other_collidee;
+	bool operator==(const Collision & other)const;
 };
 
 class Collider: public Component {
 public:
 	Collider(GameObject*owner) :Component(owner) {}
 	virtual void setup() override;
-	virtual void update() override;
-	virtual void collision_step()override;
 	virtual void teardown()override;
-	const std::vector<GameObject*> & get_colliding_objects();
+	const std::vector<Collision> & get_collisions();
+
 protected:
-	void notify_collision(Collider*);
-	bool already_colliding(Collider*);
-	virtual bool collides_with(const Collider*){return false;}
-	std::vector<GameObject*> m_colliding_objects;
-	static std::vector<Collider*> m_all_colliders;
-	std::set<Collider*> m_newly_registered_collisions;
-	Collider* m_me;
+	friend class PhysxEngine;
+	
+	void notify_collision(const Collision & coll);
+	void clear_collisions();
+	virtual void register_collider() = 0;
+	virtual void unregister_collider() = 0;
+	
+	std::vector<Collision> m_collisions;
+	//std::vector<Collision*> m_new_collisions;
 private:
-	static void register_collider(Collider*);
-	static void unregister_collider(Collider*);
 };

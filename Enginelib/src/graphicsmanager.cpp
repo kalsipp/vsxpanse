@@ -13,7 +13,7 @@ unsigned int GraphicsManager::m_screen_width = 1024 ;
 unsigned int GraphicsManager::m_screen_height = 768;
 std::map<ResourceFile *, SDL_Texture*> GraphicsManager::m_textures;
 std::string GraphicsManager::m_window_name = "Let's go bois";
-SDL_Color GraphicsManager::render_draw_color = {0, 0, 0, 1};
+SDL_Color GraphicsManager::m_render_draw_color = {0, 0, 0, 1};
 /* Public Routines */
 
 void GraphicsManager::initialize() {
@@ -80,11 +80,7 @@ void GraphicsManager::teardown() {
 }
 
 void GraphicsManager::prepare_rendering() {
-	SDL_SetRenderDrawColor(GraphicsManager::m_main_renderer,
-	                       GraphicsManager::render_draw_color.r,
-	                       GraphicsManager::render_draw_color.g,
-	                       GraphicsManager::render_draw_color.b,
-	                       GraphicsManager::render_draw_color.a);
+	set_render_draw_color(0, 0, 0, 0);
 	SDL_RenderClear(GraphicsManager::m_main_renderer);
 }
 //
@@ -125,6 +121,47 @@ void GraphicsManager::render_texture(const Sprite & sprite,
 	    flip);								// const SDL_RendererFlip flip
 }
 
+void GraphicsManager::render_circle(const Vector2D & pos, int radius)
+{
+	/* Stolen by https://stackoverflow.com/questions/38334081/howto-draw-circles-arcs-and-vector-graphics-in-sdl */
+	int x = radius - 1;
+	int y = 0;
+	int tx = 1;
+	int ty = 1;
+	int err = tx - (radius << 1); // shifting bits left by 1 effectively
+								  // doubles the value. == tx - diameter
+	int posx = helpers::round_to_int(pos.x);
+	int posy = helpers::round_to_int(pos.y);
+	while (x >= y)
+	{
+		//  Each of the following renders an octant of the circle
+		SDL_RenderDrawPoint(m_main_renderer, posx + x, posy - y);
+		SDL_RenderDrawPoint(m_main_renderer, posx + x, posy + y);
+		SDL_RenderDrawPoint(m_main_renderer, posx - x, posy - y);
+		SDL_RenderDrawPoint(m_main_renderer, posx - x, posy + y);
+		SDL_RenderDrawPoint(m_main_renderer, posx + y, posy - x);
+		SDL_RenderDrawPoint(m_main_renderer, posx + y, posy + x);
+		SDL_RenderDrawPoint(m_main_renderer, posx - y, posy - x);
+		SDL_RenderDrawPoint(m_main_renderer, posx - y, posy + x);
+
+		if (err <= 0)
+		{
+			y++;
+			err += ty;
+			ty += 2;
+		}
+		if (err > 0)
+		{
+			x--;
+			tx += 2;
+			err += tx - (radius << 1);
+		}
+	}
+
+}
+
+
+
 void GraphicsManager::execute_rendering() {
 	SDL_RenderPresent(GraphicsManager::m_main_renderer);
 }
@@ -148,6 +185,21 @@ SDL_Texture * GraphicsManager::get_texture_from_text(const std::string & text, T
 	SDL_Texture *  new_text = convert_surface_to_texture(new_surf);
 	SDL_FreeSurface(new_surf);
 	return new_text;
+}
+
+void GraphicsManager::set_render_draw_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
+{
+	SDL_SetRenderDrawColor(GraphicsManager::m_main_renderer,
+		r,
+		g,
+		b,
+		a);
+}
+
+void GraphicsManager::destroy_texture(SDL_Texture * text)
+{
+	ASSERT(text != nullptr, "Trying to destroy nullptr");
+	SDL_DestroyTexture(text);
 }
 
 /* Private routines */

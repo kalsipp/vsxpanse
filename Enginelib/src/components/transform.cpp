@@ -19,18 +19,19 @@ void Transform::set_position(const Vector3D & position)
 	m_position = position;
 }
 
-void Transform::set_position(const Vector2DInt & pos, bool clear_z)
+bool & Transform::dynamic(bool value)
 {
-	m_position.x = pos.x;
-	m_position.y = pos.y;
-	if (clear_z) m_position.z = 0;
+	return m_dynamic;
 }
 
 void Transform::set_position(const Vector2D & pos, bool clear_z)
 {
-	m_position.x = pos.x;
-	m_position.y = pos.y;
-	if (clear_z) m_position.z = 0;
+	if (m_dynamic)
+	{
+		m_position.x = pos.x;
+		m_position.y = pos.y;
+		if (clear_z) m_position.z = 0;
+	}
 }
 
 Vector3D Transform::get_position() const {
