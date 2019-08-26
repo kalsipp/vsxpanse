@@ -23,33 +23,33 @@
     <ProjectGuid>{4C4067C5-61D3-4A3A-903A-86E508B740DF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>GardenVexor</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>GardenVexor</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -78,7 +78,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\include;C:\Users\marti\source\repos\vsxpanse\Enginelib\src;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)shared_external_libs\SDL2_image-2.0.5\include;$(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\include;$(SolutionDir)shared_external_libs\SDL2-2.0.10\include;$(SolutionDir)Enginelib\src;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)shared_external_libs\zlib;$(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64;$(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64;$(SolutionDir)shared_external_libs\SDL2-2.0.10\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -86,7 +87,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\include;C:\Users\marti\source\repos\vsxpanse\Enginelib\src;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)shared_external_libs\SDL2_image-2.0.5\include;$(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\include;$(SolutionDir)shared_external_libs\SDL2-2.0.10\include;$(SolutionDir)Enginelib\src;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)shared_external_libs\zlib;$(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64;$(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64;$(SolutionDir)shared_external_libs\SDL2-2.0.10\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -127,10 +129,16 @@ xcopy /y /d /s  "$(ProjectDir)Resources" "$(OutDir)Resources\"</Command>
       <AdditionalLibraryDirectories>C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\lib\x64;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\lib\x64;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\lib\x64;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\zlib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y /d  "$(SolutionDir)shared_external_libs\SDL2_image-2.0.3\lib\x64\*.dll" "$(OutDir)"
-xcopy /y /d  "$(SolutionDir)shared_external_libs\SDL2_ttf-2.0.14\lib\x64\*.dll" "$(OutDir)"
-xcopy /y /d  "$(SolutionDir)shared_external_libs\SDL2-2.0.8\lib\x64\*.dll" "$(OutDir)"
-xcopy /y /d /s  "$(ProjectDir)Resources" "$(OutDir)Resources\"</Command>
+      <Command>xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2-2.0.10\lib\x64\SDL2.dll %outfold%SDL2.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\SDL2_image.dll $(TargetDir)SDL2_image.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\libjpeg-9.dll $(TargetDir)libjpeg-9.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\libpng16-16.dll $(TargetDir)libpng16-16.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\libtiff-5.dll $(TargetDir)libtiff-5.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\libwebp-7.dll $(TargetDir)libwebp-7.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64\zlib1.dll $(TargetDir)zlib1.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64\SDL2_ttf.dll $(TargetDir)SDL2_ttf.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64\libfreetype-6.dll $(TargetDir)libfreetype-6.dll*
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -179,10 +187,16 @@ xcopy /y /d /s  "$(ProjectDir)Resources" "$(OutDir)Resources\"</Command>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;zlibstat.lib;zlibdll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y /d  "$(SolutionDir)shared_external_libs\SDL2_image-2.0.3\lib\x64\*.dll" "$(OutDir)"
-xcopy /y /d  "$(SolutionDir)shared_external_libs\SDL2_ttf-2.0.14\lib\x64\*.dll" "$(OutDir)"
-xcopy /y /d  "$(SolutionDir)shared_external_libs\SDL2-2.0.8\lib\x64\*.dll" "$(OutDir)"
-xcopy /y /d /s  "$(ProjectDir)Resources" "$(OutDir)Resources\"</Command>
+      <Command>xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2-2.0.10\lib\x64\SDL2.dll %outfold%SDL2.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\SDL2_image.dll $(TargetDir)SDL2_image.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\libjpeg-9.dll $(TargetDir)libjpeg-9.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\libpng16-16.dll $(TargetDir)libpng16-16.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\libtiff-5.dll $(TargetDir)libtiff-5.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\libwebp-7.dll $(TargetDir)libwebp-7.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64\zlib1.dll $(TargetDir)zlib1.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64\SDL2_ttf.dll $(TargetDir)SDL2_ttf.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64\libfreetype-6.dll $(TargetDir)libfreetype-6.dll*
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

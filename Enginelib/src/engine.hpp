@@ -94,7 +94,15 @@ gameobject_type * Engine::add_gameobject() {
 
 template <class gameobject_type>
 gameobject_type * Engine::get_gameobject(const GAMEOBJECT_ID id) {
-	assert(Engine::m_gameobjects.count(id));
-	if (!Engine::m_gameobjects.count(id)) return nullptr;
-    return std::static_pointer_cast<gameobject_type>(Engine::m_gameobjects[id]);
+	for (auto gObj_in_world = m_gameobjects.begin();
+		gObj_in_world != m_gameobjects.end();
+		++gObj_in_world
+		)
+	{
+		if ((*gObj_in_world)->id() == id)
+		{
+			std::static_pointer_cast<gameobject_type>(*gObj_in_world);
+		}
+	}
+	return nullptr;
 }

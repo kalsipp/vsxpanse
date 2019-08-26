@@ -24,10 +24,7 @@ public:
 	Parameter: const Vector2D & pos
 	Parameter: bool clear_z. sets position z to 0 is true. position z is not changed otherwise.
 	------------------------------------*/
-	void set_position(const Vector2D & pos, bool clear_z = true);
-
-
-
+	void set_position(const Vector2D & pos, bool clear_z);
 	void rotate(const Vector3D &);
 	void set_scale(const Vector3D &);
 	Vector3D get_position()const;

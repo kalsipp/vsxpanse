@@ -44,8 +44,6 @@ void ASSERT(bool condition, const std::string & message)
 	if (!condition)
 	{
 		Logging::log(std::stringstream() << std::endl << "Assertion: " << condition << std::endl <<
-			"Failed in file: " << __FILE__ << std::endl <<
-			"line: " << __LINE__ << std::endl <<
 			"Message: " << message << std::endl << std::endl, Logging::ERROR);
 		Logging::teardown();
 		HELPERS_CALL_SIG_HANDLER;

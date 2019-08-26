@@ -15,7 +15,6 @@ const std::string Logging::GREY_TEXT = "\033[0;37m";
 const std::string Logging::RESET_TEXT = "\033[0m";
 std::chrono::high_resolution_clock::time_point Logging::m_start_time;
 
-
 void Logging::add_file(const std::string & name, uint8_t verbosity) {
 #ifdef DEBUG
 	LoggingFile* newlog = new LoggingFile(name, verbosity);
@@ -61,6 +60,7 @@ void Logging::initialize() {
 	m_initialized = true;
 	m_running = true;
 	m_start_time = std::chrono::high_resolution_clock::now();
+	Logging::add_file("everything.log", Logging::TRACE);
 #else
 #endif
 }

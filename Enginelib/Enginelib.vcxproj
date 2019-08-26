@@ -23,32 +23,32 @@
     <ProjectGuid>{B96BF295-01C3-493F-A2AA-3858E94AFBCC}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Enginelib</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -77,8 +77,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\zlib;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\zlib;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\lib\x64;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\lib\x64;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\lib\x64;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\zlib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)shared_external_libs\SDL2-2.0.10\include;$(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\include;$(SolutionDir)shared_external_libs\SDL2_image-2.0.5\include;$(SolutionDir)shared_external_libs\zlib;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)shared_external_libs\SDL2-2.0.10\lib\x64;$(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64;$(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64;$(SolutionDir)shared_external_libs\zlib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -87,8 +87,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\zlib;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\zlib;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\lib\x64;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\lib\x64;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\lib\x64;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\zlib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)shared_external_libs\SDL2-2.0.10\include;$(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\include;$(SolutionDir)shared_external_libs\SDL2_image-2.0.5\include;$(SolutionDir)shared_external_libs\zlib;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)shared_external_libs\SDL2-2.0.10\lib\x64;$(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64;$(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64;$(SolutionDir)shared_external_libs\zlib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -100,6 +100,7 @@
       <ConformanceMode>true</ConformanceMode>
       <ForcedIncludeFiles>%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <AssemblerOutput>All</AssemblerOutput>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -120,6 +121,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AssemblerOutput>All</AssemblerOutput>
       <WholeProgramOptimization>false</WholeProgramOptimization>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -141,6 +143,7 @@
       <ConformanceMode>true</ConformanceMode>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <AssemblerOutput>All</AssemblerOutput>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -162,6 +165,7 @@
       <AssemblerOutput>All</AssemblerOutput>
       <ExpandAttributedSource>false</ExpandAttributedSource>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

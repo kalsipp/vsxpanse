@@ -25,7 +25,6 @@ GameObject * g_debug_texttime;
 
 
 void set_up_logging() {
-	Logging::add_file("everything.log", Logging::TRACE);
 	Logging::add_file("info.log", Logging::INFO);
 	Logging::add_file("warnings.log", Logging::WARNING);
 	Logging::add_file("errors.log", Logging::ERROR);
