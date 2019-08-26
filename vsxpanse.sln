@@ -15,7 +15,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GardenVexor_unittests", "Ga
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GenVania", "GenVania\GenVania.vcxproj", "{70088A3A-1AE7-45A0-BCCB-9BDE7D2C13C2}"
 	ProjectSection(ProjectDependencies) = postProject
-		{3FA0FC5C-53EC-430F-B6C5-C1140FD604DF} = {3FA0FC5C-53EC-430F-B6C5-C1140FD604DF}
 		{B96BF295-01C3-493F-A2AA-3858E94AFBCC} = {B96BF295-01C3-493F-A2AA-3858E94AFBCC}
 	EndProjectSection
 EndProject
@@ -34,7 +33,6 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4C4067C5-61D3-4A3A-903A-86E508B740DF}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{4C4067C5-61D3-4A3A-903A-86E508B740DF}.Debug|x64.ActiveCfg = Debug|x64
-		{4C4067C5-61D3-4A3A-903A-86E508B740DF}.Debug|x64.Build.0 = Debug|x64
 		{4C4067C5-61D3-4A3A-903A-86E508B740DF}.Release|Any CPU.ActiveCfg = Release|Win32
 		{4C4067C5-61D3-4A3A-903A-86E508B740DF}.Release|x64.ActiveCfg = Release|x64
 		{B96BF295-01C3-493F-A2AA-3858E94AFBCC}.Debug|Any CPU.ActiveCfg = Debug|Win32
@@ -59,6 +57,7 @@ Global
 		{7B2ADB91-7EC9-48B5-8ED7-76FC84707B77}.Release|x64.ActiveCfg = Release|x64
 		{70088A3A-1AE7-45A0-BCCB-9BDE7D2C13C2}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{70088A3A-1AE7-45A0-BCCB-9BDE7D2C13C2}.Debug|x64.ActiveCfg = Debug|x64
+		{70088A3A-1AE7-45A0-BCCB-9BDE7D2C13C2}.Debug|x64.Build.0 = Debug|x64
 		{70088A3A-1AE7-45A0-BCCB-9BDE7D2C13C2}.Release|Any CPU.ActiveCfg = Release|Win32
 		{70088A3A-1AE7-45A0-BCCB-9BDE7D2C13C2}.Release|x64.ActiveCfg = Release|x64
 		{70088A3A-1AE7-45A0-BCCB-9BDE7D2C13C2}.Release|x64.Build.0 = Release|x64

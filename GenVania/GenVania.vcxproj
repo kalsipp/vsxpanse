@@ -72,8 +72,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\marti\source\repos\vsxpanse\Enginelib\src;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\marti\source\repos\vsxpanse\x64\Debug;$(LibraryPath);C:\Users\marti\source\repos\vsxpanse\shared_external_libs\zlib;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\lib\x64;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\lib\x64;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\lib\x64</LibraryPath>
+    <IncludePath>$(SolutionDir)shared_external_libs\SDL2_image-2.0.5\include;$(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\include;$(SolutionDir)shared_external_libs\SDL2-2.0.10\include;$(SolutionDir)Enginelib\src;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)shared_external_libs\zlib;$(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64;$(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64;$(SolutionDir)shared_external_libs\SDL2-2.0.10\lib\x64\;$(TargetDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -86,8 +86,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Users\marti\source\repos\vsxpanse\Enginelib\src;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\include;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\marti\source\repos\vsxpanse\x64\Release;$(LibraryPath);C:\Users\marti\source\repos\vsxpanse\shared_external_libs\zlib;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\lib\x64;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\lib\x64;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\lib\x64</LibraryPath>
+    <IncludePath>$(SolutionDir)shared_external_libs\SDL2_image-2.0.5\include;$(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\include;$(SolutionDir)shared_external_libs\SDL2-2.0.10\include;$(SolutionDir)Enginelib\src;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)shared_external_libs\zlib;$(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64;$(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64;$(SolutionDir)shared_external_libs\SDL2-2.0.10\lib\x64\;$(TargetDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -102,8 +102,21 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;zlibstat.lib;enginelib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;zlibstat.lib;Enginelib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(TargetDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2-2.0.10\lib\x64\SDL2.dll $(TargetDir)SDL2.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\SDL2_image.dll $(TargetDir)SDL2_image.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\libjpeg-9.dll $(TargetDir)libjpeg-9.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\libpng16-16.dll $(TargetDir)libpng16-16.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\libtiff-5.dll $(TargetDir)libtiff-5.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\libwebp-7.dll $(TargetDir)libwebp-7.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64\zlib1.dll $(TargetDir)zlib1.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64\SDL2_ttf.dll $(TargetDir)SDL2_ttf.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64\libfreetype-6.dll $(TargetDir)libfreetype-6.dll*
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -155,8 +168,21 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;zlibstat.lib;enginelib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;zlibstat.lib;Enginelib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(TargetDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2-2.0.10\lib\x64\SDL2.dll $(TargetDir)SDL2.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\SDL2_image.dll $(TargetDir)SDL2_image.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\libjpeg-9.dll $(TargetDir)libjpeg-9.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\libpng16-16.dll $(TargetDir)libpng16-16.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\libtiff-5.dll $(TargetDir)libtiff-5.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\libwebp-7.dll $(TargetDir)libwebp-7.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64\zlib1.dll $(TargetDir)zlib1.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64\SDL2_ttf.dll $(TargetDir)SDL2_ttf.dll*
+xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64\libfreetype-6.dll $(TargetDir)libfreetype-6.dll*
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\BulletComponent.hpp">

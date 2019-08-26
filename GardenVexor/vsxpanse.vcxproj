@@ -129,7 +129,7 @@ xcopy /y /d /s  "$(ProjectDir)Resources" "$(OutDir)Resources\"</Command>
       <AdditionalLibraryDirectories>C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2-2.0.8\lib\x64;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_ttf-2.0.14\lib\x64;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\SDL2_image-2.0.3\lib\x64;C:\Users\marti\source\repos\vsxpanse\shared_external_libs\zlib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2-2.0.10\lib\x64\SDL2.dll %outfold%SDL2.dll*
+      <Command>xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2-2.0.10\lib\x64\SDL2.dll $(TargetDir)SDL2.dll*
 xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\SDL2_image.dll $(TargetDir)SDL2_image.dll*
 xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\libjpeg-9.dll $(TargetDir)libjpeg-9.dll*
 xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\libpng16-16.dll $(TargetDir)libpng16-16.dll*
@@ -187,7 +187,7 @@ xcopy /y /d /s  "$(ProjectDir)Resources" "$(OutDir)Resources\"</Command>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;zlibstat.lib;zlibdll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2-2.0.10\lib\x64\SDL2.dll %outfold%SDL2.dll*
+      <Command>xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2-2.0.10\lib\x64\SDL2.dll $(TargetDir)SDL2.dll*
 xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\SDL2_image.dll $(TargetDir)SDL2_image.dll*
 xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\libjpeg-9.dll $(TargetDir)libjpeg-9.dll*
 xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\libpng16-16.dll $(TargetDir)libpng16-16.dll*
