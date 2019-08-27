@@ -23,6 +23,11 @@ Vector2D Vector2D::operator-(const Vector2D & other)const
 	return Vector2D(x - other.x, y - other.y);
 }
 
+Vector2D Vector2D::operator+(const Vector2D & other)const
+{
+	return Vector2D(x + other.x, y + other.y);
+}
+
 double Vector2D::magnitude()const
 {
 	return sqrt(x*x + y*y);
@@ -36,6 +41,27 @@ double Vector2D::magnitude_squared() const
 double Vector2D::dot(const Vector2D& other) const
 {
 	return x * other.x + y * other.y;
+}
+
+void Vector2D::rotate_around(double angle, const Vector2D pivot_point)
+{
+	angle = helpers::TO_RAD*angle;
+	const double angle_sin = sin(angle);
+	const double angle_cos = cos(angle);
+	x -= pivot_point.x;
+	y -= pivot_point.y;
+	const double xnew = x*angle_cos - y*angle_sin;
+	const double ynew = x*angle_sin + y*angle_cos;
+	x = xnew + pivot_point.x;
+	y = ynew + pivot_point.y;
+}
+
+void Vector2D::rotate(double angle)
+{
+	angle = helpers::TO_RAD*angle;
+	double oldX = x;
+	x = x*cos(angle) + y*sin(angle);
+	y = y*cos(angle) - oldX*sin(angle);
 }
 
 Vector2D Vector2D::perpendicular() const

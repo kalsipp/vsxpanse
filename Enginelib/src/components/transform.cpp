@@ -11,9 +11,16 @@ void Transform::move(const Vector3D & movement) {
 	m_position += movement;
 }
 
-void Transform::rotate(const Vector3D & rotation) {
-	m_rotation += rotation;
+void Transform::rotate(double rot) 
+{
+	m_rotation += rot;
 }
+void Transform::rotate_around(double rot, Vector2D pivot_point)
+{
+	m_position.rotate_around(rot, pivot_point);
+	m_rotation += rot;
+}
+
 void Transform::set_position(const Vector3D & position)
 {
 	m_position = position;
@@ -38,7 +45,7 @@ Vector3D Transform::get_position() const {
 	return m_position;
 }
 
-Vector3D Transform::get_rotation() const {
+double Transform::get_rotation() const {
 	return m_rotation;
 }
 

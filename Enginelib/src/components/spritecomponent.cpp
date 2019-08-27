@@ -44,7 +44,7 @@ void SpriteComponent::render() {
 			*m_sprite,
 			Vector2D(m_owner->transform().get_position()),
 			m_owner->transform().get_scale(),
-			m_owner->transform().get_rotation().z,
+			m_owner->transform().get_rotation(),
 			m_centered,
 			m_flip
 		);

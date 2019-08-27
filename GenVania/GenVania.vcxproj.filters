@@ -42,6 +42,9 @@
     <ClInclude Include="src\FileHandler.hpp">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="EnemyController.hpp">
+      <Filter>src\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GenVania.cpp">
@@ -67,6 +70,9 @@
     </ClCompile>
     <ClCompile Include="src\FileHandler.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyController.cpp">
+      <Filter>src\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

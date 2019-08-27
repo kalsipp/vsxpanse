@@ -185,6 +185,7 @@ xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64\libfreet
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="EnemyController.hpp" />
     <ClInclude Include="src\BulletComponent.hpp">
       <SubType>
       </SubType>
@@ -203,6 +204,7 @@ xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64\libfreet
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="EnemyController.cpp" />
     <ClCompile Include="src\BulletComponent.cpp">
       <SubType>
       </SubType>
