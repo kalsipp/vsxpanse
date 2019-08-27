@@ -85,12 +85,10 @@ void PhysxEngine::render()
 
 	for (size_t coll = 0; coll < m_polygoncolliders.size(); ++coll)
 	{
-		const Vector2D pos = m_polygoncolliders[coll]->owner().transform().get_position();
-		const std::vector<Vector2D> points = m_polygoncolliders[coll]->get_points();
+		const std::vector<Vector2D> points = m_polygoncolliders[coll]->get_points_worldpos();
 		for (int index = 0; index < points.size(); index++)
 		{
 			Vector2D first_point = points[index];
-			first_point += pos;
 			Vector2D second_point;
 			if (index < points.size()-1)
 			{
@@ -100,7 +98,6 @@ void PhysxEngine::render()
 			{
 				second_point = points[0];
 			}
-			second_point += pos;
 			GraphicsManager::draw_line(first_point, second_point);
 		}
 
@@ -138,7 +135,7 @@ void PhysxEngine::clear_all_collisions()
 	{
 		m_circlecolliders[coll]->clear_collisions();
 	}
-	for (size_t coll = 0; coll < m_circlecolliders.size(); ++coll)
+	for (size_t coll = 0; coll < m_polygoncolliders.size(); ++coll)
 	{
 		m_polygoncolliders[coll]->clear_collisions();
 	}

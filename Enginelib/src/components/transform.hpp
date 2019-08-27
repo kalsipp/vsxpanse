@@ -25,14 +25,15 @@ public:
 	Parameter: bool clear_z. sets position z to 0 is true. position z is not changed otherwise.
 	------------------------------------*/
 	void set_position(const Vector2D & pos, bool clear_z);
-	void rotate(const Vector3D &);
+	void rotate(double amount);
+	void rotate_around(double amount, Vector2D pivot_point);
 	void set_scale(const Vector3D &);
 	Vector3D get_position()const;
-	Vector3D get_rotation()const;
+	double get_rotation()const;
 	Vector3D get_scale()const;
 private:
 	bool m_dynamic = true;
 	Vector3D m_position;
-	Vector3D m_rotation;
+	double m_rotation; 
 	Vector3D m_scale;
 };

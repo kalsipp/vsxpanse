@@ -25,6 +25,7 @@ public:
 	void initialize(const std::initializer_list<Vector2D>& init_points);
 	bool collides_with(const PolygonCollider* other);
 	const std::vector<Vector2D>& get_points()const;
+	std::vector<Vector2D> get_points_worldpos()const;
 protected:
 	void register_collider()override;
 	void unregister_collider()override;
@@ -35,5 +36,7 @@ private:
 		const std::vector <Vector2D>& points, 
 		std::vector<Vector2D>& normals);
 	static Projection project(const Vector2D& axis, const std::vector<Vector2D>& points);
+	Vector2D get_centre_point();
 	std::vector<Vector2D> points;
+	Vector2D centre_point;
 };
