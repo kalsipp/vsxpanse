@@ -32,7 +32,7 @@ bool PolygonCollider::collides_with(const PolygonCollider* other)
 	
 	const Vector2D other_position = other->owner().transform().get_position();
 	std::vector<Vector2D> otherpoints_offset(other->get_points());
-	helpers::add_to_all(mypoints_offset, other_position);
+	helpers::add_to_all(otherpoints_offset, other_position);
 
 	std::vector<Vector2D> my_normals;
 	calculate_normals(points, my_normals);
@@ -40,9 +40,9 @@ bool PolygonCollider::collides_with(const PolygonCollider* other)
 	{
 		Projection p1 = project(normal, mypoints_offset);
 		Projection p2 = project(normal, otherpoints_offset);
-		if (p1.overlap(p2))
+		if (!p1.overlap(p2))
 		{
-			return true;
+			return false;
 		}
 	}
 
@@ -54,12 +54,12 @@ bool PolygonCollider::collides_with(const PolygonCollider* other)
 		
 		Projection p1 = project(normal, mypoints_offset);
 		Projection p2 = project(normal, otherpoints_offset);
-		if (p1.overlap(p2))
+		if (!p1.overlap(p2))
 		{
-			return true;
+			return false;
 		}
 	}
-	return false;
+	return true;
 }
 
 const std::vector<Vector2D>& PolygonCollider::get_points()const
