@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="helpers_test.cpp">
+      <Filter>src\basics</Filter>
+    </ClCompile>
+    <ClCompile Include="engine_test.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="gameobject_test.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="graphicsmanager_test.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="rect_test.cpp">
+      <Filter>src\basics</Filter>
+    </ClCompile>
+    <ClCompile Include="resourcearchive_test.cpp">
+      <Filter>src\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="resourcefile_test.cpp">
+      <Filter>src\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{7b41792e-6f44-4cec-be1f-3fce2a61a4f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\basics">
+      <UniqueIdentifier>{513682f2-6817-4d94-b6d5-0483d5f2e266}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\filesystem">
+      <UniqueIdentifier>{a3675dc4-f992-4fb8-80f9-f6a4d1f80923}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>

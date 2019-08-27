@@ -5,7 +5,7 @@
 class CircleCollider : public Collider
 {
 public:
-	CircleCollider(GameObject*owner) :Collider(owner) {}
+	CircleCollider(GameObject*owner) :Collider(owner), m_radius(0), m_offset(0,0) {}
 	void initialize(double radius, const Vector2D & offset);
 	Vector2D position()const;
 	constexpr

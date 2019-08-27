@@ -16,6 +16,12 @@ public:
 	Vector2D operator*(const multiplier_type& value);
 	double magnitude()const;
 	double magnitude_squared()const;
+	double dot(const Vector2D& other)const;
+	/*-------------------------------------------------------
+	(x,y) -> (-y,x)
+	---------------------------------------------------------*/
+	Vector2D perpendicular()const;
+	Vector2D normalized()const;
 	void set(double, double);
 	void round_to_int();
 	SDL_Point get_sdl_point();

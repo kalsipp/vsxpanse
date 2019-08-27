@@ -1,7 +1,7 @@
 #pragma once
 #include "component.hpp"
 #include "components/textcomponent.hpp"
-#include "components/circlecollider.hpp"
+#include "collider.hpp"
 class PlayerController:public Component
 {
 public:
@@ -11,5 +11,5 @@ public:
 private:
 	double m_speed;
 	TextComponent * m_text_comp;
-	CircleCollider * m_collider;
+	Collider * m_collider;
 };

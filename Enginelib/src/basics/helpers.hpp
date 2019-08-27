@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cassert>
 #include <signal.h>
+#include <vector>
 #ifdef __GNUC__
 #include <execinfo.h>
 #include <unistd.h>
@@ -78,10 +79,22 @@ namespace helpers {
 	@param v - floating point value
 	@return closest integer.
 	---------------------------------------------------------*/
-	
 	int round_to_int(float v);
-	
 	int round_to_int(double v);
+
+	/*-------------------------------------------------------
+	Takes a vector and add the second argument to all elements.
+	---------------------------------------------------------
+	The type needs to support +=
+	---------------------------------------------------------*/
+	template<typename T, typename Allocator>
+	void add_to_all(std::vector<T, Allocator>& vec, const T& to_add)
+	{
+		for (size_t i = 0; i < vec.size(); ++i)
+		{
+			vec[i] += to_add;
+		}
+	}
 
 	/*-------------------------------------------------------
 		Returns the squared distance between two positions

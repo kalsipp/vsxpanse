@@ -27,6 +27,7 @@ public:
 	                           bool centered,
 	                           const SDL_RendererFlip flip);
 	static void render_circle(const Vector2D & pos, int radius);
+	static void draw_line(const Vector2D& from, const Vector2D& to);
 	static void execute_rendering();
 	static SDL_Texture * load_texture(ResourceFile * file);
 	static SDL_Texture * get_texture(ResourceFile * file);

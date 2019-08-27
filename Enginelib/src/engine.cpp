@@ -14,9 +14,6 @@ bool Engine::m_about_to_load_scene = false;
 bool Engine::m_running = false;
 bool Engine::m_initialized = false;
 GAMEOBJECT_ID Engine::m_latest_gameobject_id = 0;
-//std::map<GAMEOBJECT_ID, GameObject*> Engine::m_gameobjects;
-//std::queue<std::pair<GAMEOBJECT_ID, GameObject*>> Engine::m_gameobjects_to_add;
-//std::queue<GAMEOBJECT_ID> Engine::m_gameobjects_to_remove;
 std::vector<GameObject *> Engine::m_gameobjects;
 std::queue<GameObject*> Engine::m_gameobjects_to_add;
 std::vector<GameObject*> Engine::m_gameobjects_to_remove;
@@ -144,7 +141,7 @@ void Engine::update_gameobjects() {
 	}
 }
 
-bool debug_render_colliders = false;
+bool debug_render_colliders = true;
 
 void Engine::render_gameobjects() {
 
@@ -167,6 +164,10 @@ void Engine::render_gameobjects() {
 			(*go)->render();
 		}
 	}
+	//GraphicsManager::set_render_draw_color(0xff, 0xff, 0xff, 0xff);
+	//GraphicsManager::draw_line(Vector2D(0, 0), Vector2D(10, 10));
+	//GraphicsManager::draw_line(Vector2D(10, 10), Vector2D(20, 0));
+	//GraphicsManager::draw_line(Vector2D(20, 0), Vector2D(0, 0));
 	GraphicsManager::execute_rendering();
 }
 

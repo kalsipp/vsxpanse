@@ -91,7 +91,7 @@ void GraphicsManager::render_texture(const Sprite & sprite,
                                      bool centered,
                                      const SDL_RendererFlip flip) {
 	SDL_Texture * texture = sprite.get_sdl_texture();
-	ASSERT(texture != nullptr && texture != NULL, "Trying to render null texture");
+	ASSERT(texture != nullptr, "Trying to render null texture");
 	int width = 0;
 	int height = 0;
 	SDL_QueryTexture(texture, NULL, NULL, &width, &height);
@@ -160,7 +160,15 @@ void GraphicsManager::render_circle(const Vector2D & pos, int radius)
 
 }
 
-
+void GraphicsManager::draw_line(const Vector2D& from, const Vector2D& to)
+{
+	int from_x = (int)round(from.x);
+	int from_y = (int)round(from.y);
+	int to_x = (int)round(to.x);
+	int to_y = (int)round(to.y);
+	int success = SDL_RenderDrawLine(m_main_renderer, from_x, from_y, to_x, to_y);
+	ASSERT(success == 0, SDL_GetError());
+}
 
 void GraphicsManager::execute_rendering() {
 	SDL_RenderPresent(GraphicsManager::m_main_renderer);
