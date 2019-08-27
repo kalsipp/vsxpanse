@@ -54,10 +54,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="polygoncollider_test.cpp" />
     <ClCompile Include="rect_test.cpp" />
     <ClCompile Include="resourcearchive_test.cpp" />
     <ClCompile Include="resourcefile_test.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="vector2d_test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Enginelib\Enginelib.vcxproj">
