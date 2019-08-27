@@ -41,9 +41,10 @@ void Logging::log(const std::string & text, uint8_t level) {
 	int64_t duration = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - m_start_time).count();
 	LogEntry entry(text, duration, level);
 	std::string out = Logging::fancify(entry);
-	for (auto it = m_loggingfiles.begin(); it != m_loggingfiles.end(); ++it) {
-		if (entry.m_level >= (*it)->m_verbosity) {
-			(*it)->write(out);
+	for (int i = 0; i < m_loggingfiles.size(); i++)
+	{
+		if (entry.m_level >= m_loggingfiles[i]->m_verbosity) {
+			m_loggingfiles[i]->write(out);
 		}
 	}
 #ifdef LOGGING_TERMINAL_PRINT

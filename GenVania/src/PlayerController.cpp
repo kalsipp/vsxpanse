@@ -2,12 +2,13 @@
 #include "inputmanager.hpp"
 #include "engine.hpp"
 #include "GenericBullet.hpp"
+
 void PlayerController::setup()
 {
 	m_speed = 1;
 	m_text_comp = owner().get_component<TextComponent>();
 	ASSERT(m_text_comp, "textcomp is null");
-	m_collider = owner().get_component<CircleCollider>();
+	m_collider = owner().get_component<Collider>();
 	ASSERT(m_collider, "collcomp is null");
 }
 void PlayerController::update()

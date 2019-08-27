@@ -33,6 +33,22 @@ double Vector2D::magnitude_squared() const
 	return x * x + y * y;
 }
 
+double Vector2D::dot(const Vector2D& other) const
+{
+	return x * other.x + y * other.y;
+}
+
+Vector2D Vector2D::perpendicular() const
+{
+	return Vector2D(-y, x);
+}
+
+Vector2D Vector2D::normalized() const
+{
+	const double magn = magnitude();
+	return Vector2D(x/magn, y/magn);
+}
+
 void Vector2D::set(double _x, double _y) {
 	x = _x;
 	y = _y;
