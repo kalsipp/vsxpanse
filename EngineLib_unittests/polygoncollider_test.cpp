@@ -161,11 +161,13 @@ TEST(polygoncollider, is_convex_simple_basic)
 	{
 		std::vector<Vector2D> points(
 			{
-				Vector2D(0,0), 
-				Vector2D(1, 1), 
-				Vector2D(2, 0)
+				Vector2D(0, 0), 
+				Vector2D(2, 2),
+				Vector2D(3, 1), 
+				Vector2D(4, 2),
+				Vector2D(5, 0),
 			}
-			);
+		);
 		bool convex = PolygonCollider::is_convex_simple(points);
 		ASSERT_FALSE(convex);
 	}
