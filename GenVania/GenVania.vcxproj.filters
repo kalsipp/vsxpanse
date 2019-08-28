@@ -45,6 +45,12 @@
     <ClInclude Include="EnemyController.hpp">
       <Filter>src\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Rotatorcontroller.hpp">
+      <Filter>src\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Rotator.hpp">
+      <Filter>src\GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GenVania.cpp">
@@ -73,6 +79,12 @@
     </ClCompile>
     <ClCompile Include="EnemyController.cpp">
       <Filter>src\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Rotatorcontroller.cpp">
+      <Filter>src\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Rotator.cpp">
+      <Filter>src\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

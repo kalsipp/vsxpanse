@@ -40,26 +40,26 @@ bool PolygonCollider::collides_with(const PolygonCollider* other)
 	const std::vector<Vector2D> mypoints_offset = get_points_worldpos();
 	const std::vector<Vector2D> otherpoints_offset = other->get_points_worldpos();
 
-	std::vector<Vector2D> my_normals(points.size());
-	calculate_normals(points, my_normals);
+	std::vector<Vector2D> my_normals(mypoints_offset.size());
+	calculate_normals(mypoints_offset, my_normals);
 	if (do_projections_overlap(my_normals, mypoints_offset, otherpoints_offset) == false) 
 	{
 		return false;
 	}
 
-	std::vector<Vector2D> other_normals(other->get_points().size());
-	calculate_normals(other->get_points(), other_normals);
+	std::vector<Vector2D> other_normals(otherpoints_offset.size());
+	calculate_normals(otherpoints_offset, other_normals);
 	if (do_projections_overlap(other_normals, otherpoints_offset, mypoints_offset) == false)
 	{
 		return false;
 	}
-	return true;
+ 	return true;
 }
 
 bool PolygonCollider::collides_with(const CircleCollider* other)
 {
 	const std::vector<Vector2D> worldpoints = get_points_worldpos();
-	for (const Vector2D point : worldpoints)
+	for (auto point : worldpoints)
 	{
 		const Vector2D diff = point - other->position();
 		const Vector2D diff_norm = diff.normalized();
@@ -81,16 +81,18 @@ bool PolygonCollider::do_projections_overlap(const std::vector<Vector2D>& normal
 	{
 		Projection p1 = project(normal, first_points);
 		Projection p2 = project(normal, other_points);
-		if (!p1.overlap(p2))
+		
+		bool is_overlap = p1.overlap(p2);
+		if (!is_overlap)
 		{
 			return false;
 		}
 		else
 		{
-			if (p1.contains(p2) || p2.contains(p1))
+			/*if (p1.contains(p2) || p2.contains(p1))
 			{
 				return true;
-			}
+			}*/
 		}
 	}
 	return true;
@@ -116,18 +118,18 @@ std::vector<Vector2D> PolygonCollider::get_points_worldpos()const
 	return mypoints_offset;
 }
 
-/* Assume argument 2, normals, is already initiated to same size as argument 1 points */
+/* Assume argument 2, normals, is already initiated to same size as argument 1, points. */
 void PolygonCollider::calculate_normals(
 	const std::vector <Vector2D> & points, 
 	std::vector<Vector2D> & normals)
 {
-	for (int index = 0; index < points.size(); index++)
+	for (int i = 0; i < points.size(); i++)
 	{
-		const Vector2D firstPoint = points[index];
+		const Vector2D firstPoint = points[i];
 		Vector2D secondPoint;
-		if (index < points.size()-1)
+		if (i < points.size()-1)
 		{
-			secondPoint = points[index+1];
+			secondPoint = points[i+1];
 		}
 		else
 		{
@@ -136,8 +138,7 @@ void PolygonCollider::calculate_normals(
 		const Vector2D edge = firstPoint - secondPoint;
 		const Vector2D normal = edge.perpendicular();
 		const Vector2D norm_norm = normal.normalized();
-		normals[index] = norm_norm;
-		
+		normals[i] = norm_norm;		
 	}
 }
 

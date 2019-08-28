@@ -15,7 +15,9 @@ public:
 	Vector2D operator+(const Vector2D & other)const;
 	
 	template <typename multiplier_type>
-	Vector2D operator*(const multiplier_type& value);
+	Vector2D operator*(const multiplier_type& value)const;
+	template <typename multiplier_type>
+	Vector2D operator/(const multiplier_type& value)const;
 	template <typename multiplier_type>
 	Vector2D& operator/=(const multiplier_type& value);
 	double magnitude()const;
@@ -40,9 +42,15 @@ private:
 };
 
 template<typename multiplier_type>
-inline Vector2D Vector2D::operator*(const multiplier_type & value)
+inline Vector2D Vector2D::operator*(const multiplier_type & value)const
 {	
 	return Vector2D(x*value, y*value);
+}
+
+template<typename multiplier_type>
+inline Vector2D Vector2D::operator/(const multiplier_type& value)const
+{
+	return Vector2D(x / value, y / value);
 }
 template<typename multiplier_type>
 inline Vector2D& Vector2D::operator/=(const multiplier_type& value)

@@ -36,7 +36,7 @@ TEST(helpers, random_int_negative)
 	const int max = 100;
 	int32_t sum = 0;
 	double expected_avg = 0;
-	int iters = 1000;
+	int iters = 10000;
 	for (int i = 0; i < iters; ++i) {
 		sum += helpers::random_int(min, max);
 	}

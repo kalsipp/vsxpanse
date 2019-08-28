@@ -10,7 +10,6 @@ void GenericEnemy::setup()
 	add_component<SpriteComponent>()->load_sprite_from_image(FileHandler::get_item("Images\\harvester.png"));
 
 	int rand = helpers::random_int(0, 1);
-	rand = 1;
 	if (rand == 0)
 	{
 		add_component<PolygonCollider>()->initialize(

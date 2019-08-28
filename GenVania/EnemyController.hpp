@@ -9,6 +9,7 @@ public:
 	void update()override;
 private:
 	float speed;
+	float rotation;
 	Vector2D direction;
 	Collider* collider;
 };

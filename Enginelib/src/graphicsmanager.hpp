@@ -44,6 +44,9 @@ public:
 	@return - pointer to the created texture.
 	---------------------------------------------------------*/
 	static SDL_Texture * convert_surface_to_texture(SDL_Surface* surf);
+	static constexpr unsigned int get_screen_height() {return m_screen_height;}
+	static constexpr unsigned int get_screen_width() {return m_screen_width;}
+
 private:
 	// static SDL_Surface * load_surface_from_sdl_rwops(SDL_RWops*);
 	static SDL_Surface * load_image_to_surface(const std::string & path);
