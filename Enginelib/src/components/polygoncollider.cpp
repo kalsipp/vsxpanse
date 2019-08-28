@@ -53,6 +53,9 @@ bool PolygonCollider::collides_with(const PolygonCollider* other)
 	{
 		return false;
 	}
+
+
+
  	return true;
 }
 
@@ -178,6 +181,39 @@ Vector2D PolygonCollider::get_centre_point_worldpos()
 	Vector2D pos(centre_point);
 	pos += owner().transform().get_position();
 	return pos;
+}
+
+bool PolygonCollider::is_convex_simple(const std::vector<Vector2D>& points)
+{
+	if (points.size() < 3) return false; //Then it's a line or a point.
+	double sign = 0;
+	for (int i = 0; i < points.size(); i++)
+	{
+		const Vector2D first_point = points[i];
+		Vector2D second_point = points[(i < points.size() - 1) ? i + 1 : 0];
+		Vector2D third_point = points[(i < points.size() - 2) ? i + 2 : 1];
+		double dx1 = second_point.x - first_point.x;
+		double dy1 = second_point.y - first_point.y;
+		double dx2 = third_point.x - second_point.x;
+		double dy2 = third_point.y - second_point.y;
+		if (sign == 0)
+		{
+			sign = dx1 * dy2 - dy1 * dx2;
+		}
+		else
+		{
+			double product = dx1 * dy2 - dy1 * dx2;
+			if (sign > 0 && product < 0)
+			{
+				return false;
+			}
+			else if (sign < 0 && product > 0)
+			{
+				return false;
+			}
+		}
+	}
+	return true;
 }
 
 

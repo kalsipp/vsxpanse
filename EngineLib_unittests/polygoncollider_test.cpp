@@ -150,3 +150,24 @@ TEST(polygoncollider, special_case)
 	ASSERT_FALSE(collides);
 
 }
+
+TEST(polygoncollider, is_convex_simple_basic)
+{
+	{
+		std::vector<Vector2D> points({Vector2D(0,0), Vector2D(1, 1), Vector2D(2, 0)});
+		bool convex = PolygonCollider::is_convex_simple(points);
+		ASSERT_TRUE(convex);
+	}
+	{
+		std::vector<Vector2D> points(
+			{
+				Vector2D(0,0), 
+				Vector2D(1, 1), 
+				Vector2D(2, 0)
+			}
+			);
+		bool convex = PolygonCollider::is_convex_simple(points);
+		ASSERT_FALSE(convex);
+	}
+
+}

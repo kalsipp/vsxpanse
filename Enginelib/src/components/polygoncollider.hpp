@@ -2,6 +2,11 @@
 #include "../collider.hpp"
 #include <vector>
 
+class PointContainer : std::vector<Vector2D>
+{
+
+};
+
 class Projection
 {
 public:
@@ -21,7 +26,6 @@ public:
 	PolygonCollider(GameObject* owner) :Collider(owner){}
 
 	/*-------------------------------------------------------
-	---------------------------------------------------------
 	@param init_points - each point of the polygon collider in local space.
 	---------------------------------------------------------*/
 	void initialize(const std::initializer_list<Vector2D>& init_points);
@@ -30,6 +34,7 @@ public:
 	const std::vector<Vector2D>& get_points()const;
 	std::vector<Vector2D> get_points_worldpos()const;
 	Vector2D get_centre_point_worldpos();
+	static bool is_convex_simple(const std::vector<Vector2D> & points);
 protected:
 	void register_collider()override;
 	void unregister_collider()override;
