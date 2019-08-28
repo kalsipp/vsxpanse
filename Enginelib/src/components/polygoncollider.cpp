@@ -31,6 +31,7 @@ bool Projection::contains(const Projection& other)
 void PolygonCollider::initialize(const std::initializer_list<Vector2D>& init_points)
 {
 	points = std::vector(init_points);
+	ASSERT(is_convex_simple(points), "Can only handle convex shapes");
 	centre_point = calculate_centre_point();
 }
 
@@ -215,7 +216,6 @@ bool PolygonCollider::is_convex_simple(const std::vector<Vector2D>& points)
 	}
 	return true;
 }
-
 
 void PolygonCollider::register_collider()
 {

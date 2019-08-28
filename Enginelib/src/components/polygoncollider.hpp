@@ -2,11 +2,6 @@
 #include "../collider.hpp"
 #include <vector>
 
-class PointContainer : std::vector<Vector2D>
-{
-
-};
-
 class Projection
 {
 public:
@@ -35,6 +30,7 @@ public:
 	std::vector<Vector2D> get_points_worldpos()const;
 	Vector2D get_centre_point_worldpos();
 	static bool is_convex_simple(const std::vector<Vector2D> & points);
+	
 protected:
 	void register_collider()override;
 	void unregister_collider()override;
