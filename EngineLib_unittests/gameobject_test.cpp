@@ -5,7 +5,7 @@
 #include "components/spritecomponent.hpp"
 
 
-TEST(create_gameobjects, test)
+TEST(gameobject, create_gameobjects)
 {
 	Engine::initialize();
 	ResourceArchive x("TestResources");

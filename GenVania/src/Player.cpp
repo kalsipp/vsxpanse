@@ -25,7 +25,7 @@ void Player::setup()
 			Vector2D(70, 0),
 			Vector2D(60, -10),
 			Vector2D(40, -20),
-			Vector2D(20, -10)
+			Vector2D(20, -10),
 		});
 	add_component<TextComponent>()->initialize(FileHandler::get_item("Fonts\\calibri.ttf"));
 }

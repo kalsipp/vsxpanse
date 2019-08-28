@@ -32,6 +32,7 @@ public:
 	double get_rotation()const;
 	Vector3D get_scale()const;
 private:
+	void increase_rotation(double amount);
 	bool m_dynamic = true;
 	Vector3D m_position;
 	double m_rotation; 

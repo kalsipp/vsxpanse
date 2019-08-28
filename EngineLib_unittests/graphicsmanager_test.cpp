@@ -2,18 +2,18 @@
 #include "filesystem/resourcearchive.hpp"
 #include "graphicsmanager.hpp"
 
-TEST(initialize_test, test)
+TEST(graphicsmanager, initialize)
 {
 	GraphicsManager::initialize();
 	GraphicsManager::teardown();
 }
-TEST(prepare_rendering_test, test)
+TEST(graphicsmanager, prepare_rendering)
 {
 	GraphicsManager::initialize();
 	GraphicsManager::prepare_rendering();
 	GraphicsManager::teardown();
 }
-TEST(load_texture_test, test)
+TEST(graphicsmanager, load_texture_test)
 {
 	GraphicsManager::initialize();
 	ResourceArchive ra("TestResources");

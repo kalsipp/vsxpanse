@@ -42,6 +42,6 @@ void EnemyController::update()
 	}
 	direction = direction.normalized();
 
-	m_owner->transform().move(direction * speed);
-	m_owner->transform().rotate(1);
+	//m_owner->transform().move(direction * speed);
+	//m_owner->transform().rotate(1);
 }

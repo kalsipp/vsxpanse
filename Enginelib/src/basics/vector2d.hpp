@@ -13,6 +13,7 @@ public:
 	Vector2D & operator+=(const Vector2D &);
 	Vector2D operator-(const Vector2D & other)const;
 	Vector2D operator+(const Vector2D & other)const;
+	
 	template <typename multiplier_type>
 	Vector2D operator*(const multiplier_type& value);
 	template <typename multiplier_type>
@@ -22,6 +23,7 @@ public:
 	double dot(const Vector2D& other)const;
 	void rotate_around(double angle, Vector2D point);
 	void rotate(double angle);
+	bool equals(const Vector2D & other, double accuracy);
 	/*-------------------------------------------------------
 	(x,y) -> (-y,x)
 	---------------------------------------------------------*/

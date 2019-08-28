@@ -1,4 +1,5 @@
 #include "polygoncollider.hpp"
+#include "circlecollider.hpp"
 #include "../graphicsmanager.hpp"
 #include "../physxengine.hpp"
 
@@ -13,13 +14,24 @@ bool Projection::overlap(const Projection& other)
 	{
 		return m_min - other.m_max < 0;
 	}
+}
 
+bool Projection::contains(const Projection& other)
+{
+	if (m_min < other.m_min)
+	{
+		if (m_max > other.m_max)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 void PolygonCollider::initialize(const std::initializer_list<Vector2D>& init_points)
 {
 	points = std::vector(init_points);
-	centre_point = get_centre_point();
+	centre_point = calculate_centre_point();
 }
 
 bool PolygonCollider::collides_with(const PolygonCollider* other)
@@ -30,30 +42,59 @@ bool PolygonCollider::collides_with(const PolygonCollider* other)
 
 	std::vector<Vector2D> my_normals(points.size());
 	calculate_normals(points, my_normals);
-	for (auto normal : my_normals)
+	if (do_projections_overlap(my_normals, mypoints_offset, otherpoints_offset) == false) 
 	{
-		Projection p1 = project(normal, mypoints_offset);
-		Projection p2 = project(normal, otherpoints_offset);
-		if (!p1.overlap(p2))
-		{
-			return false;
-		}
+		return false;
 	}
-
 
 	std::vector<Vector2D> other_normals(other->get_points().size());
 	calculate_normals(other->get_points(), other_normals);
-	for (auto normal : other_normals)
+	if (do_projections_overlap(other_normals, otherpoints_offset, mypoints_offset) == false)
 	{
-		
-		Projection p1 = project(normal, mypoints_offset);
-		Projection p2 = project(normal, otherpoints_offset);
-		if (!p1.overlap(p2))
+		return false;
+	}
+	return true;
+}
+
+bool PolygonCollider::collides_with(const CircleCollider* other)
+{
+	const std::vector<Vector2D> worldpoints = get_points_worldpos();
+	for (const Vector2D point : worldpoints)
+	{
+		const Vector2D diff = point - other->position();
+		const Vector2D diff_norm = diff.normalized();
+		std::vector<Vector2D> normals({ diff_norm });
+		Vector2D circlepos1 = normals[0]*other->radius() + other->position();
+		Vector2D circlepos2 = other->position() - normals[0] * other->radius();
+		std::vector<Vector2D> circlepoints({ circlepos1, circlepos2 });
+		if (do_projections_overlap(normals, worldpoints, circlepoints) == false)
 		{
 			return false;
 		}
 	}
 	return true;
+}
+
+bool PolygonCollider::do_projections_overlap(const std::vector<Vector2D>& normals, const std::vector<Vector2D>& first_points, const std::vector<Vector2D>& other_points)
+{
+	for (auto normal : normals)
+	{
+		Projection p1 = project(normal, first_points);
+		Projection p2 = project(normal, other_points);
+		if (!p1.overlap(p2))
+		{
+			return false;
+		}
+		else
+		{
+			if (p1.contains(p2) || p2.contains(p1))
+			{
+				return true;
+			}
+		}
+	}
+	return true;
+
 }
 
 const std::vector<Vector2D>& PolygonCollider::get_points()const
@@ -120,7 +161,7 @@ Projection PolygonCollider::project(const Vector2D& axis, const std::vector<Vect
 	return proj;
 }
 
-Vector2D PolygonCollider::get_centre_point()
+Vector2D PolygonCollider::calculate_centre_point()
 {
 	Vector2D sum;
 	for(int i = 0; i < points.size(); ++i)
@@ -130,6 +171,14 @@ Vector2D PolygonCollider::get_centre_point()
 	sum /= points.size();
 	return sum;
 }
+
+Vector2D PolygonCollider::get_centre_point_worldpos()
+{
+	Vector2D pos(centre_point);
+	pos += owner().transform().get_position();
+	return pos;
+}
+
 
 void PolygonCollider::register_collider()
 {

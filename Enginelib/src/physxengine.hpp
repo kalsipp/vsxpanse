@@ -16,6 +16,7 @@ public:
 private:
 	PhysxEngine() {}
 	static void clear_all_collisions();
+	static void register_collision(Collider* coll1, Collider* coll2);
 	static bool m_initialized;
 	static std::vector<CircleCollider*> m_circlecolliders;
 	static std::vector<PolygonCollider*> m_polygoncolliders;

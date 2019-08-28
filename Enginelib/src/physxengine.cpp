@@ -35,12 +35,7 @@ void PhysxEngine::update()
 			CircleCollider * second = m_circlecolliders[other_coll];
 			if (first->collides_with(second))
 			{
-				Collision first_bam;
-				first_bam.m_other_collidee = second;
-				first->notify_collision(first_bam);
-				Collision second_bam;
-				second_bam.m_other_collidee = first;
-				second->notify_collision(second_bam);
+				register_collision(first, second);
 			}
 
 		}
@@ -48,29 +43,36 @@ void PhysxEngine::update()
 
 	for (size_t poly_coll = 0; poly_coll < m_polygoncolliders.size(); ++poly_coll)
 	{
+		PolygonCollider* first = m_polygoncolliders[poly_coll];
 		for (size_t other_coll = 0; other_coll < m_polygoncolliders.size(); ++other_coll)
 		{
-			/* the first circle_coll will have to check everyone else
-			   the second circle_coll will have to check everyone else except the first
-			   so if circle_coll = 1, skip other_coll = 0
-			   so if circle_coll = 2, skip other_coll = 0, 1
-			*/
 			if (other_coll <= poly_coll) continue;
-			PolygonCollider* first = m_polygoncolliders[poly_coll];
 			PolygonCollider* second = m_polygoncolliders[other_coll];
 			if (first->collides_with(second))
 			{
-				Collision first_bam;
-				first_bam.m_other_collidee = second;
-				first->notify_collision(first_bam);
-				Collision second_bam;
-				second_bam.m_other_collidee = first;
-				second->notify_collision(second_bam);
+				register_collision(first, second);
 			}
+		}
+		for (size_t circle_coll = 0; circle_coll < m_circlecolliders.size(); ++circle_coll)
+		{
+			CircleCollider* second = m_circlecolliders[circle_coll];
 
+			if (first->collides_with(second))
+			{
+				register_collision(first, second);
+			}
 		}
 	}
+}
 
+void PhysxEngine::register_collision(Collider * coll1, Collider * coll2)
+{
+	Collision first_bam;
+	first_bam.m_other_collidee = coll1;
+	coll2->notify_collision(first_bam);
+	Collision second_bam;
+	second_bam.m_other_collidee = coll2;
+	coll1->notify_collision(second_bam);
 }
 
 void PhysxEngine::render()
@@ -80,7 +82,8 @@ void PhysxEngine::render()
 		const Vector2D pos = m_circlecolliders[circle_coll]->owner().transform().get_position();
 		const double radius = m_circlecolliders[circle_coll]->radius();
 		const int radius_int = helpers::round_to_int(radius);
-		GraphicsManager::render_circle(pos, radius_int);
+		GraphicsManager::draw_circle(pos, radius_int);
+		GraphicsManager::draw_point(pos);
 	}
 
 	for (size_t coll = 0; coll < m_polygoncolliders.size(); ++coll)
@@ -98,9 +101,17 @@ void PhysxEngine::render()
 			{
 				second_point = points[0];
 			}
+			GraphicsManager::set_render_draw_color(0xff, 0xff, 0xff, 0xff);
 			GraphicsManager::draw_line(first_point, second_point);
+			GraphicsManager::set_render_draw_color(255, 0, 0, 0);
+			GraphicsManager::draw_point(first_point);
+			GraphicsManager::set_render_draw_color(0xff, 0xff, 0xff, 0xff);
 		}
-
+			GraphicsManager::set_render_draw_color(0, 255, 0, 0);
+			GraphicsManager::draw_point(m_polygoncolliders[coll]->owner().transform().get_position());
+			GraphicsManager::set_render_draw_color(0, 0, 255, 0);
+			GraphicsManager::draw_point(m_polygoncolliders[coll]->get_centre_point_worldpos());
+			GraphicsManager::set_render_draw_color(0xff, 0xff, 0xff, 0xff);
 	}
 }
 
