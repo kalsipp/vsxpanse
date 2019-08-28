@@ -9,10 +9,12 @@ public:
 	const double m_min;
 	const double m_max;
 	bool overlap(const Projection& other);
+	bool contains(const Projection& other);
 	
 private:
 };
 
+class CircleCollider;
 class PolygonCollider :public Collider
 {
 public:
@@ -24,8 +26,10 @@ public:
 	---------------------------------------------------------*/
 	void initialize(const std::initializer_list<Vector2D>& init_points);
 	bool collides_with(const PolygonCollider* other);
+	bool collides_with(const CircleCollider* other);
 	const std::vector<Vector2D>& get_points()const;
 	std::vector<Vector2D> get_points_worldpos()const;
+	Vector2D get_centre_point_worldpos();
 protected:
 	void register_collider()override;
 	void unregister_collider()override;
@@ -35,8 +39,9 @@ private:
 	static void calculate_normals(
 		const std::vector <Vector2D>& points, 
 		std::vector<Vector2D>& normals);
+	bool do_projections_overlap(const std::vector<Vector2D>& normals, const std::vector<Vector2D>& first_points, const std::vector<Vector2D>& other_points);
 	static Projection project(const Vector2D& axis, const std::vector<Vector2D>& points);
-	Vector2D get_centre_point();
+	Vector2D calculate_centre_point();
 	std::vector<Vector2D> points;
 	Vector2D centre_point;
 };

@@ -109,6 +109,7 @@ void Engine::main_loop() {
 			m_about_to_load_scene = false;
 			replace_scene();
 		}
+		GraphicsManager::prepare_rendering();
 		Timer tim;
 		tim.start();
 		Engine::put_gameobjects_into_world();
@@ -145,7 +146,7 @@ bool debug_render_colliders = true;
 
 void Engine::render_gameobjects() {
 
-	GraphicsManager::prepare_rendering();
+	//GraphicsManager::prepare_rendering();
 	/* Temp for collider debugging */
 	if (InputManager::get_key(SDL_SCANCODE_LCTRL) && InputManager::get_key_down(SDL_SCANCODE_K))
 	{
@@ -164,16 +165,9 @@ void Engine::render_gameobjects() {
 			(*go)->render();
 		}
 	}
-	//GraphicsManager::set_render_draw_color(0xff, 0xff, 0xff, 0xff);
-	//GraphicsManager::draw_line(Vector2D(0, 0), Vector2D(10, 10));
-	//GraphicsManager::draw_line(Vector2D(10, 10), Vector2D(20, 0));
-	//GraphicsManager::draw_line(Vector2D(20, 0), Vector2D(0, 0));
+
 	GraphicsManager::execute_rendering();
 }
-
-//bool compare_gameobjects_zpos(const GameObject* a, const GameObject* b) {
-//	return (a->transform().get_position().z < b->transform().get_position().z);
-//}
 
 void Engine::clear_all_gameobjects() {
 	m_gameobjects.clear();

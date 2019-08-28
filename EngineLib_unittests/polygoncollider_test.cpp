@@ -1,8 +1,9 @@
 #include "pch.h"
 #define private public
 #include "components/polygoncollider.hpp"
+#include "components/circlecollider.hpp"
 
-TEST(collideswith, helo)
+TEST(polygoncollider, collideswith_basic)
 {
 	GameObject owner1(0);
 	PolygonCollider poly1(&owner1);
@@ -14,9 +15,11 @@ TEST(collideswith, helo)
 
 	bool collides = poly1.collides_with(&poly2);
 	ASSERT_TRUE(collides);
+	collides = poly2.collides_with(&poly1);
+	ASSERT_TRUE(collides);
 }
 
-TEST(collideswith, not)
+TEST(polygoncollider, collideswith_not)
 {
 	GameObject owner1(0);
 	PolygonCollider poly1(&owner1);
@@ -29,9 +32,11 @@ TEST(collideswith, not)
 
 	bool collides = poly1.collides_with(&poly2);
 	ASSERT_FALSE(collides);
+	collides = poly2.collides_with(&poly1);
+	ASSERT_FALSE(collides);
 }
 
-TEST(collideswith, different_shapes)
+TEST(polygoncollider, collideswith_different_shapes)
 {
 	GameObject owner1(0);
 	PolygonCollider poly1(&owner1);
@@ -53,4 +58,59 @@ TEST(collideswith, different_shapes)
 
 	bool collides = poly1.collides_with(&poly2);
 	ASSERT_TRUE(collides);
+	collides = poly2.collides_with(&poly1);
+	ASSERT_TRUE(collides);
+}
+
+TEST(polygoncollider, collideswith_differentPos)
+{
+	GameObject owner1(0);
+	PolygonCollider poly1(&owner1);
+	owner1.transform().set_position(Vector3D(5, 0, 0));
+	poly1.initialize({ Vector2D(0,0), Vector2D(10, 10), Vector2D(20, 0) });
+
+	GameObject owner2(1);
+	PolygonCollider poly2(&owner2);
+	poly2.initialize({ Vector2D(0,0), Vector2D(10, 10), Vector2D(20, 0) });
+
+	bool collides = poly1.collides_with(&poly2);
+	ASSERT_TRUE(collides);
+	collides = poly2.collides_with(&poly1);
+	ASSERT_TRUE(collides);
+}
+
+TEST(polygoncollider, collideswith_circle)
+{
+	GameObject owner1(0);
+	CircleCollider circle1(&owner1);
+	owner1.transform().set_position(Vector3D(5, 0, 0));
+	circle1.initialize(10, Vector2D(0,0));
+
+	GameObject owner2(1);
+	PolygonCollider poly2(&owner2);
+	poly2.initialize({ Vector2D(0,0), Vector2D(10, 10), Vector2D(20, 0) });
+
+	bool collides = poly2.collides_with(&circle1);
+	ASSERT_TRUE(collides);
+}
+
+TEST(polygoncollider, polygon_collision_containment)
+{
+	GameObject owner1(0);
+	PolygonCollider poly1(&owner1);
+	owner1.transform().set_position(Vector3D(1, 0, 0));
+	poly1.initialize({ Vector2D(0,0), Vector2D(2, 2), Vector2D(4, 0) });
+	
+	GameObject owner2(1);
+	PolygonCollider poly2(&owner2);
+	poly2.initialize({ Vector2D(1,0), Vector2D(2, 1), Vector2D(3, 0) });
+
+	bool collides = poly2.collides_with(&poly1);
+	ASSERT_TRUE(collides);
+	collides = poly1.collides_with(&poly2);
+	ASSERT_TRUE(collides);
+}
+
+TEST(polygoncollider, close_collision)
+{
 }

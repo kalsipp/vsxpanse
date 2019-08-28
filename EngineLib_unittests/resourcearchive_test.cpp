@@ -7,18 +7,18 @@
 
 
 
-TEST(constructor_test, test)
+TEST(resourcearchive, constructor_test)
 {
 	ResourceArchive archive("TestResources");
 }
-TEST(get_item_test, test)
+TEST(resourcearchive, get_item_test)
 {
 	ResourceArchive archive("TestResources");
 	std::string path_to_file = "Fonts\\calibri.ttf";
 	ResourceFile * file = archive.get_item(path_to_file);
 	ASSERT_NE(file, nullptr);
 }
-TEST(free_item_test, test)
+TEST(resourcearchive, free_item_test)
 {
 	ResourceArchive archive("TestResources");
 	std::string path_to_file = "Fonts\\calibri.ttf";

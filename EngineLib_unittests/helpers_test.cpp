@@ -5,7 +5,7 @@
 #include "basics/vector2dint.hpp"
 #include "basics/vector2d.hpp"
 
-TEST(random_int, limits)
+TEST(helpers, random_int_limits)
 {
 	const int min = 1;
 	const int max = 2;
@@ -16,7 +16,7 @@ TEST(random_int, limits)
 		ASSERT_TRUE(res <= max);
 	}
 }
-TEST(random_int, randomness)
+TEST(helpers, random_int_randomness)
 {
 	const int min = 0;
 	const int max = 100;
@@ -30,7 +30,7 @@ TEST(random_int, randomness)
 	std::cout << std::to_string(realavg) << std::endl;
 	ASSERT_NEAR(expected_avg, realavg, 2.0);
 }
-TEST(random_int, negative)
+TEST(helpers, random_int_negative)
 {
 	const int min = -100;
 	const int max = 100;
@@ -44,7 +44,7 @@ TEST(random_int, negative)
 	std::cout << std::to_string(realavg) << std::endl;
 	ASSERT_NEAR(expected_avg, realavg, 5.0);
 }
-TEST(random_int, both_negative)
+TEST(helpers, random_int_both_negative)
 {
 	const int min = -200;
 	const int max = -100;
@@ -58,7 +58,7 @@ TEST(random_int, both_negative)
 	std::cout << std::to_string(realavg) << std::endl;
 	ASSERT_NEAR(expected_avg, realavg, 3.0);
 }
-TEST(to_rad_test, test)
+TEST(helpers, to_rad)
 {
 	double x = helpers::TO_RAD * 0;
 	ASSERT_NEAR(x, 0, 0.01);
@@ -69,7 +69,7 @@ TEST(to_rad_test, test)
 	x = helpers::TO_RAD * 270;
 	ASSERT_NEAR(x, 3*helpers::MATH_PI/2, 0.01);
 }
-TEST(float_round_to_int, test)
+TEST(helpers, float_round_to_int)
 {
 	float x = 4.9f;
 	int res = helpers::round_to_int(x);
@@ -83,7 +83,7 @@ TEST(float_round_to_int, test)
 	res = helpers::round_to_int(x);
 	ASSERT(res == 6, "");
 }
-TEST(double_round_to_int, test)
+TEST(helpers, double_round_to_int)
 {
 	double x = 4.9;
 	int res = helpers::round_to_int(x);
@@ -97,7 +97,7 @@ TEST(double_round_to_int, test)
 	res = helpers::round_to_int(x);
 	ASSERT(res == 6, "");
 }
-TEST(Vec2Int_get_squared_distance_between_positions, test)
+TEST(helpers, Vec2Int_get_squared_distance_between_positions)
 {
 	{
 		Vector2DInt origin(0, 0);
@@ -114,7 +114,7 @@ TEST(Vec2Int_get_squared_distance_between_positions, test)
 		ASSERT(rs = 200, "");
 	}
 }
-TEST(Vec2_get_squared_distance_between_positions, test)
+TEST(helpers, Vec2_get_squared_distance_between_positions)
 {
 	{
 		Vector2D origin(0, 0);

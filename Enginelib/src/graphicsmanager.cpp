@@ -83,7 +83,7 @@ void GraphicsManager::prepare_rendering() {
 	set_render_draw_color(0, 0, 0, 0);
 	SDL_RenderClear(GraphicsManager::m_main_renderer);
 }
-//
+
 void GraphicsManager::render_texture(const Sprite & sprite,
                                      const Vector2D & pos,
                                      const Vector2D & scale,
@@ -121,7 +121,7 @@ void GraphicsManager::render_texture(const Sprite & sprite,
 	    flip);								// const SDL_RendererFlip flip
 }
 
-void GraphicsManager::render_circle(const Vector2D & pos, int radius)
+void GraphicsManager::draw_circle(const Vector2D & pos, int radius)
 {
 	/* Stolen by https://stackoverflow.com/questions/38334081/howto-draw-circles-arcs-and-vector-graphics-in-sdl */
 	int x = radius - 1;
@@ -158,6 +158,14 @@ void GraphicsManager::render_circle(const Vector2D & pos, int radius)
 		}
 	}
 
+}
+
+void GraphicsManager::draw_point(const Vector2D& pos)
+{
+	int x = helpers::round_to_int(pos.x);
+	int y = helpers::round_to_int(pos.y);
+	int success = SDL_RenderDrawPoint(m_main_renderer, x, y);
+	ASSERT(success == 0, SDL_GetError());
 }
 
 void GraphicsManager::draw_line(const Vector2D& from, const Vector2D& to)

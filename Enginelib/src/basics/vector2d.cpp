@@ -64,6 +64,13 @@ void Vector2D::rotate(double angle)
 	y = y*cos(angle) - oldX*sin(angle);
 }
 
+bool Vector2D::equals(const Vector2D & other, double accuracy)
+{
+	const bool same_x = abs(other.x-x) < accuracy;
+	const bool same_y = abs(other.y-y) < accuracy;
+	return same_x && same_y;
+}
+
 Vector2D Vector2D::perpendicular() const
 {
 	return Vector2D(-y, x);

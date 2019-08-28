@@ -13,12 +13,12 @@ void Transform::move(const Vector3D & movement) {
 
 void Transform::rotate(double rot) 
 {
-	m_rotation += rot;
+	increase_rotation(rot);
 }
 void Transform::rotate_around(double rot, Vector2D pivot_point)
 {
 	m_position.rotate_around(rot, pivot_point);
-	m_rotation += rot;
+	increase_rotation(rot);
 }
 
 void Transform::set_position(const Vector3D & position)
@@ -57,3 +57,8 @@ void Transform::set_scale(const Vector3D & scale) {
 	m_scale = scale;
 }
 
+void Transform::increase_rotation(double amount)
+{
+	m_rotation += amount;
+	m_rotation = fmod(m_rotation, 360);
+}

@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "basics/rect.hpp"
 
-TEST(Constructor_noargs, test)
+TEST(rect, Constructor_noargs)
 {
 	Rect rec;
 	ASSERT_TRUE(rec.x == 0);
@@ -9,7 +9,7 @@ TEST(Constructor_noargs, test)
 	ASSERT_TRUE(rec.w == 0);
 	ASSERT_TRUE(rec.h == 0);
 }
-TEST(Constructor_args, test)
+TEST(rect, Constructor_args)
 {
 	double valx = 10.5;
 	double valy = 102.3;
@@ -21,7 +21,7 @@ TEST(Constructor_args, test)
 	ASSERT_TRUE(rec.w == valw);
 	ASSERT_TRUE(rec.h == valh);
 }
-TEST(get_sdl_rect_test, test)
+TEST(rect, get_sdl_rect_test)
 {
 	double valx = 10.5;
 	double valy = 102.3;
