@@ -186,6 +186,8 @@ xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64\libfreet
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="EnemyController.hpp" />
+    <ClInclude Include="Rotator.hpp" />
+    <ClInclude Include="Rotatorcontroller.hpp" />
     <ClInclude Include="src\BulletComponent.hpp">
       <SubType>
       </SubType>
@@ -205,6 +207,8 @@ xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64\libfreet
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EnemyController.cpp" />
+    <ClCompile Include="Rotator.cpp" />
+    <ClCompile Include="Rotatorcontroller.cpp" />
     <ClCompile Include="src\BulletComponent.cpp">
       <SubType>
       </SubType>

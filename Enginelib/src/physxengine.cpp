@@ -101,11 +101,7 @@ void PhysxEngine::render()
 			{
 				second_point = points[0];
 			}
-			GraphicsManager::set_render_draw_color(0xff, 0xff, 0xff, 0xff);
 			GraphicsManager::draw_line(first_point, second_point);
-			GraphicsManager::set_render_draw_color(255, 0, 0, 0);
-			GraphicsManager::draw_point(first_point);
-			GraphicsManager::set_render_draw_color(0xff, 0xff, 0xff, 0xff);
 		}
 			GraphicsManager::set_render_draw_color(0, 255, 0, 0);
 			GraphicsManager::draw_point(m_polygoncolliders[coll]->owner().transform().get_position());

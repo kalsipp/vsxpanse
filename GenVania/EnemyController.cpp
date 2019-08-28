@@ -1,9 +1,11 @@
 #include "EnemyController.hpp"
-
+#include "graphicsmanager.hpp"
 void EnemyController::setup()
 {
 	speed = (float)helpers::random_int(100, 200);
 	speed /= 100;
+	rotation = (float)helpers::random_int(-200, 200);
+	rotation /= 100;
 	direction = Vector2D(helpers::random_int(-100, 100), helpers::random_int(-100, 100)).normalized();
 	collider = m_owner->get_component<Collider>();
 }
@@ -28,7 +30,7 @@ void EnemyController::update()
 	{
 		direction.x = 1;
 	}
-	else if (owner().transform().get_position().x > 600)
+	else if (owner().transform().get_position().x > GraphicsManager::get_screen_width())
 	{
 		direction.x = -1;
 	}
@@ -36,12 +38,12 @@ void EnemyController::update()
 	{
 		direction.y = 1;
 	}
-	else if (owner().transform().get_position().y > 600)
+	else if (owner().transform().get_position().y > GraphicsManager::get_screen_height())
 	{
 		direction.y = -1;
 	}
 	direction = direction.normalized();
 
-	//m_owner->transform().move(direction * speed);
-	//m_owner->transform().rotate(1);
+	m_owner->transform().move(direction * speed);
+	m_owner->transform().rotate(rotation);
 }
