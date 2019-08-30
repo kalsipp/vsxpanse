@@ -35,10 +35,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(SolutionDir)shared_external_libs\SDL2-2.0.10\include;$(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\include;$(SolutionDir)shared_external_libs\SDL2_image-2.0.5\include;$(SolutionDir)shared_external_libs\zlib;$(SolutionDir)Enginelib\src;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)shared_external_libs\SDL2-2.0.10\lib\x64;$(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64;$(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64;$(SolutionDir)shared_external_libs\zlib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)out\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(SolutionDir)shared_external_libs\SDL2-2.0.10\include;$(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\include;$(SolutionDir)shared_external_libs\SDL2_image-2.0.5\include;$(SolutionDir)shared_external_libs\zlib;$(SolutionDir)Enginelib\src;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)shared_external_libs\SDL2-2.0.10\lib\x64;$(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64;$(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64;$(SolutionDir)shared_external_libs\zlib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)out\</OutDir>
   </PropertyGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -58,7 +60,6 @@
     <ClCompile Include="rect_test.cpp" />
     <ClCompile Include="resourcearchive_test.cpp" />
     <ClCompile Include="resourcefile_test.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="vector2d_test.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -104,6 +105,9 @@
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy.exe /e /i /y /s  $(SolutionDir)TestResources $(SolutionDir)out\TestResources</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -137,6 +141,9 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy.exe /e /i /y /s  $(SolutionDir)TestResources $(SolutionDir)out\TestResources</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

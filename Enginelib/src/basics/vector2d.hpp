@@ -1,5 +1,5 @@
 #pragma once
-#include <SDL.h>
+#include <SDL_rect.h>
 #include <iostream>
 class Vector3D;
 class Vector2DInt;
@@ -11,9 +11,17 @@ public:
 	Vector2D(const Vector2DInt & vec);
 	Vector2D & operator=(const Vector3D &);
 	Vector2D & operator+=(const Vector2D &);
+	bool operator==(const Vector2D&)const;
 	Vector2D operator-(const Vector2D & other)const;
 	Vector2D operator+(const Vector2D & other)const;
 	
+	/*-------------------------------------------------------
+	Returns the angle of the vector in degrees
+	(1,0)->0
+	(0,1)->90
+	---------------------------------------------------------*/
+
+	static double angle(const Vector2D& vec);
 	template <typename multiplier_type>
 	Vector2D operator*(const multiplier_type& value)const;
 	template <typename multiplier_type>

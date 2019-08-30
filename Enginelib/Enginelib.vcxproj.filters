@@ -55,9 +55,6 @@
     <ClInclude Include="src\inputmanager.hpp">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\basicsquarecollider.hpp">
-      <Filter>src\components</Filter>
-    </ClInclude>
     <ClInclude Include="src\components\debug_closegamecomponent.hpp">
       <Filter>src\components</Filter>
     </ClInclude>
@@ -131,9 +128,6 @@
     </ClCompile>
     <ClCompile Include="src\inputmanager.cpp">
       <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\components\basicsquarecollider.cpp">
-      <Filter>src\components</Filter>
     </ClCompile>
     <ClCompile Include="src\components\spritecomponent.cpp">
       <Filter>src\components</Filter>

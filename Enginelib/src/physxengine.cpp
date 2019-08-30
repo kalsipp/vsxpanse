@@ -67,11 +67,9 @@ void PhysxEngine::update()
 
 void PhysxEngine::register_collision(Collider * coll1, Collider * coll2)
 {
-	Collision first_bam;
-	first_bam.m_other_collidee = coll1;
+	Collision first_bam(coll1);
 	coll2->notify_collision(first_bam);
-	Collision second_bam;
-	second_bam.m_other_collidee = coll2;
+	Collision second_bam(coll2);
 	coll1->notify_collision(second_bam);
 }
 

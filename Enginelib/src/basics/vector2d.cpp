@@ -1,4 +1,4 @@
-#include "vector2d.hpp"
+﻿#include "vector2d.hpp"
 #include "vector2dint.hpp"
 #include "vector3d.hpp"
 
@@ -18,6 +18,11 @@ Vector2D & Vector2D::operator+=(const Vector2D & other)
 	return *this;
 }
 
+bool Vector2D::operator==(const Vector2D& other)const
+{
+	return x == other.x && y == other.y;
+}
+
 Vector2D Vector2D::operator-(const Vector2D & other)const
 {
 	return Vector2D(x - other.x, y - other.y);
@@ -26,6 +31,19 @@ Vector2D Vector2D::operator-(const Vector2D & other)const
 Vector2D Vector2D::operator+(const Vector2D & other)const
 {
 	return Vector2D(x + other.x, y + other.y);
+}
+
+double Vector2D::angle(const Vector2D& vec)
+{
+		double ret = atanf(vec.y / vec.x) / helpers::TO_RAD;
+		if (vec.x < 0 && vec.y < 0) // quadrant Ⅲ
+			ret = 180 + ret;
+		else if (vec.x < 0) // quadrant Ⅱ
+			ret = 180 + ret; // it actually substracts
+		else if (vec.y < 0) // quadrant Ⅳ
+			ret = 270 + (90 + ret); // it actually substracts
+		return ret;
+
 }
 
 double Vector2D::magnitude()const

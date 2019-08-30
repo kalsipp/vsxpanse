@@ -59,3 +59,27 @@ TEST(vector2d, rotate_large_amounts)
 		ASSERT_TRUE(vec1.equals(Vector2D(1, 0), 0.000001));
 	}
 }
+
+TEST(Vector2, angle)
+{
+	{
+		Vector2D vec(1, 0);
+		double res = Vector2D::angle(vec);
+		ASSERT_NEAR(res, 0, 0.0001);
+	}
+	{
+		Vector2D vec(0, 1);
+		double res = Vector2D::angle(vec);
+		ASSERT_NEAR(res, 90, 0.0001);
+	}
+	{
+		Vector2D vec(-1, 0);
+		double res = Vector2D::angle(vec);
+		ASSERT_NEAR(res, 180, 0.0001);
+	}
+	{
+		Vector2D vec(0, -1);
+		double res = Vector2D::angle(vec);
+		ASSERT_NEAR(res, 270, 0.0001);
+	}
+}
