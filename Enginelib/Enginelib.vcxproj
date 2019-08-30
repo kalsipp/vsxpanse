@@ -79,6 +79,7 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)shared_external_libs\SDL2-2.0.10\include;$(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\include;$(SolutionDir)shared_external_libs\SDL2_image-2.0.5\include;$(SolutionDir)shared_external_libs\zlib;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)shared_external_libs\SDL2-2.0.10\lib\x64;$(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64;$(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64;$(SolutionDir)shared_external_libs\zlib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)enginelib_out\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -128,10 +129,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y /d /s  "$(SolutionDir)EngineResources" "$(OutDir)EngineResources\"</Command>
+      <Command>xcopy.exe /e /i /y /s  $(SolutionDir)EngineResources $(SolutionDir)out\EngineResources</Command>
     </PostBuildEvent>
     <ProjectReference>
-      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
     <Lib>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;zlibstat.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -181,10 +182,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y /d /s  "$(SolutionDir)EngineResources" "$(OutDir)EngineResources\"</Command>
+      <Command>xcopy.exe /e /i /y /s  $(SolutionDir)EngineResources $(SolutionDir)out\EngineResources</Command>
     </PostBuildEvent>
     <ProjectReference>
-      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
     <Lib>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;zlibstat.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -202,7 +203,6 @@
     <ClInclude Include="src\basics\vector3d.hpp" />
     <ClInclude Include="src\collider.hpp" />
     <ClInclude Include="src\component.hpp" />
-    <ClInclude Include="src\components\basicsquarecollider.hpp" />
     <ClInclude Include="src\components\circlecollider.hpp" />
     <ClInclude Include="src\components\debug_closegamecomponent.hpp" />
     <ClInclude Include="src\components\polygoncollider.hpp" />
@@ -230,7 +230,6 @@
     <ClCompile Include="src\basics\vector3d.cpp" />
     <ClCompile Include="src\collider.cpp" />
     <ClCompile Include="src\component.cpp" />
-    <ClCompile Include="src\components\basicsquarecollider.cpp" />
     <ClCompile Include="src\components\circlecollider.cpp" />
     <ClCompile Include="src\components\polygoncollider.cpp" />
     <ClCompile Include="src\components\spritecomponent.cpp" />

@@ -42,13 +42,13 @@
     <ClInclude Include="src\FileHandler.hpp">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyController.hpp">
+    <ClInclude Include="src\EnemyController.hpp">
       <Filter>src\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Rotatorcontroller.hpp">
+    <ClInclude Include="src\Rotatorcontroller.hpp">
       <Filter>src\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Rotator.hpp">
+    <ClInclude Include="src\Rotator.hpp">
       <Filter>src\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
@@ -77,13 +77,13 @@
     <ClCompile Include="src\FileHandler.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyController.cpp">
+    <ClCompile Include="src\EnemyController.cpp">
       <Filter>src\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Rotatorcontroller.cpp">
+    <ClCompile Include="src\Rotatorcontroller.cpp">
       <Filter>src\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Rotator.cpp">
+    <ClCompile Include="src\Rotator.cpp">
       <Filter>src\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>

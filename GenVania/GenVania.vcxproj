@@ -73,7 +73,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)shared_external_libs\SDL2_image-2.0.5\include;$(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\include;$(SolutionDir)shared_external_libs\SDL2-2.0.10\include;$(SolutionDir)Enginelib\src;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64;$(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64;$(SolutionDir)shared_external_libs\SDL2-2.0.10\lib\x64\;$(TargetDir);$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64;$(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64;$(SolutionDir)shared_external_libs\SDL2-2.0.10\lib\x64\;$(SolutionDir)enginelib_out\;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)out\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -115,7 +116,7 @@ xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\libwebp
 xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64\zlib1.dll $(TargetDir)zlib1.dll*
 xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64\SDL2_ttf.dll $(TargetDir)SDL2_ttf.dll*
 xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64\libfreetype-6.dll $(TargetDir)libfreetype-6.dll*
-</Command>
+xcopy.exe /e /i /y /s  $(SolutionDir)Resources $(SolutionDir)out\Resources</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -181,17 +182,15 @@ xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_image-2.0.5\lib\x64\libwebp
 xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64\zlib1.dll $(TargetDir)zlib1.dll*
 xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64\SDL2_ttf.dll $(TargetDir)SDL2_ttf.dll*
 xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64\libfreetype-6.dll $(TargetDir)libfreetype-6.dll*
-</Command>
+xcopy.exe /e /i /y /s  $(SolutionDir)Resources $(SolutionDir)out\Resources</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="EnemyController.hpp" />
-    <ClInclude Include="Rotator.hpp" />
-    <ClInclude Include="Rotatorcontroller.hpp" />
     <ClInclude Include="src\BulletComponent.hpp">
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="src\EnemyController.hpp" />
     <ClInclude Include="src\FileHandler.hpp" />
     <ClInclude Include="src\GenericBullet.hpp">
       <SubType>
@@ -203,16 +202,16 @@ xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64\libfreet
     </ClInclude>
     <ClInclude Include="src\Player.hpp" />
     <ClInclude Include="src\PlayerController.hpp" />
+    <ClInclude Include="src\Rotator.hpp" />
+    <ClInclude Include="src\Rotatorcontroller.hpp" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="EnemyController.cpp" />
-    <ClCompile Include="Rotator.cpp" />
-    <ClCompile Include="Rotatorcontroller.cpp" />
     <ClCompile Include="src\BulletComponent.cpp">
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="src\EnemyController.cpp" />
     <ClCompile Include="src\FileHandler.cpp" />
     <ClCompile Include="src\GenericBullet.cpp">
       <SubType>
@@ -225,6 +224,8 @@ xcopy.exe /y $(SolutionDir)shared_external_libs\SDL2_ttf-2.0.15\lib\x64\libfreet
     <ClCompile Include="src\GenVania.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\PlayerController.cpp" />
+    <ClCompile Include="src\Rotator.cpp" />
+    <ClCompile Include="src\Rotatorcontroller.cpp" />
     <ClCompile Include="template.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

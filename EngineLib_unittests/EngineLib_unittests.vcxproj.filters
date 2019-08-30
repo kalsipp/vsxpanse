@@ -23,9 +23,6 @@
     <ClCompile Include="resourcefile_test.cpp">
       <Filter>src\filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="polygoncollider_test.cpp">
       <Filter>src\components</Filter>
     </ClCompile>

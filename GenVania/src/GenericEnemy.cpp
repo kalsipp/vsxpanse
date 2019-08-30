@@ -3,7 +3,7 @@
 #include "FileHandler.hpp"
 #include "components/circlecollider.hpp"
 #include "components/polygoncollider.hpp"
-#include "..//EnemyController.hpp"
+#include "EnemyController.hpp"
 void GenericEnemy::setup()
 {
 	m_name = "GenericEnemy";

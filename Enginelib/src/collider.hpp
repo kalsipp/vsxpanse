@@ -5,7 +5,15 @@ class GameObject;
 
 class Collider;
 struct Collision {
-	Collider* m_other_collidee;
+public:
+	Collision(const Collider* other_collidee, const Vector2D& collision_direction, const Vector2D& point_of_collision)
+	:	m_other_collidee(other_collidee), 
+		m_collision_direction(collision_direction),
+		m_point_of_collision(point_of_collision){}
+	Collision(const Collider* other_collidee) :m_other_collidee(other_collidee) {}
+	const Collider* m_other_collidee;
+	const Vector2D m_collision_direction;
+	const Vector2D m_point_of_collision;
 	bool operator==(const Collision & other)const;
 };
 
