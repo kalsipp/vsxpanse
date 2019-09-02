@@ -16,7 +16,7 @@ bool Engine::m_initialized = false;
 GAMEOBJECT_ID Engine::m_latest_gameobject_id = 0;
 std::vector<GameObject *> Engine::m_gameobjects;
 std::queue<GameObject*> Engine::m_gameobjects_to_add;
-std::vector<GameObject*> Engine::m_gameobjects_to_remove;
+std::set<GameObject*> Engine::m_gameobjects_to_remove;
 ResourceArchive Engine::m_engine_resources("EngineResources");
 GameObject * g_debug_texttime;
 
@@ -83,7 +83,7 @@ void Engine::stop() {
 
 void Engine::remove_gameobject(GameObject * gObj) {
 
-	Engine::m_gameobjects_to_remove.push_back(gObj);
+	Engine::m_gameobjects_to_remove.insert(gObj);
 }
 
 size_t Engine::get_gameobject_count() {
@@ -124,20 +124,20 @@ void Engine::main_loop() {
 }
 
 void Engine::replace_scene() {
-	/*
-		Removes all gameobjects
-		calls the sceneloader function
-		this function will add the
-		intial gameobjects to the engine.
-	*/
-	clear_all_gameobjects();
-	m_scenes[m_scene_to_load]();
+/*
+	Removes all gameobjects
+	calls the sceneloader function
+	this function will add the
+	intial gameobjects to the engine.
+*/
+clear_all_gameobjects();
+m_scenes[m_scene_to_load]();
 }
 
 
 void Engine::update_gameobjects() {
 	for (auto go = Engine::m_gameobjects.begin();
-	        go != Engine::m_gameobjects.end(); ++go) {
+		go != Engine::m_gameobjects.end(); ++go) {
 		(*go)->update_components();
 	}
 }
@@ -172,12 +172,12 @@ void Engine::render_gameobjects() {
 void Engine::clear_all_gameobjects() {
 	m_gameobjects.clear();
 	std::queue<GameObject*>().swap(m_gameobjects_to_add);
-	std::vector<GameObject*>().swap(m_gameobjects_to_remove);
-	
+	m_gameobjects_to_remove.clear();
+
 	auto g = Engine::add_gameobject<GameObject>();
 	g->add_component<Debug_CloseGameComponent>();
 	g->name() = "Debug_CloseGameComponent";
-	ResourceFile * font = m_engine_resources.get_item("Fonts\\calibri.ttf");
+	ResourceFile* font = m_engine_resources.get_item("Fonts\\calibri.ttf");
 	g_debug_texttime = Engine::add_gameobject<GameObject>();
 	g_debug_texttime->transform().move(Vector2D(20, 0));
 	g_debug_texttime->add_component<TextComponent>()->initialize(font, 64);
@@ -189,9 +189,9 @@ void Engine::put_gameobjects_into_world() {
 	while (!Engine::m_gameobjects_to_add.empty()) {
 		GameObject* new_item = Engine::m_gameobjects_to_add.front();
 		Engine::m_gameobjects_to_add.pop();
-		
 
-		/* Does insert sort based on z - position 
+
+		/* Does insert sort based on z - position
 		   to decide render order.
 		   large z = rendered later = "on top" / "closer to camera"
 		*/
@@ -200,7 +200,7 @@ void Engine::put_gameobjects_into_world() {
 		{
 			if (new_item->transform().get_position().z <= m_gameobjects[indx]->transform().get_position().z)
 			{
-				m_gameobjects.insert(m_gameobjects.begin()+indx, new_item);
+				m_gameobjects.insert(m_gameobjects.begin() + indx, new_item);
 				break;
 			}
 		}
@@ -221,18 +221,18 @@ void Engine::remove_gameobject_from_world() {
 		++gObj_to_remove
 		)
 	{
-		for (auto gObj_in_world = m_gameobjects.begin();
-			gObj_in_world != m_gameobjects.end();
-			++gObj_in_world
-			)
-		{
-			if ((*gObj_in_world) == (*gObj_to_remove))
+
+		auto gObj_in_world = m_gameobjects.begin();
+		while (gObj_in_world != m_gameobjects.end()) {
+			if ((*gObj_in_world) == (*gObj_to_remove)) 
 			{
-				(*gObj_to_remove)->teardown();
-				m_gameobjects.erase(gObj_in_world);
-				delete *gObj_in_world;
-				break;
+				(*gObj_in_world)->teardown();
+				delete* gObj_in_world;
+				gObj_in_world = m_gameobjects.erase(gObj_in_world);
+				continue;
 			}
+
+			++gObj_in_world;
 		}
 	}
 

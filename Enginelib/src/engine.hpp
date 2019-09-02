@@ -5,6 +5,7 @@
 #include <limits>
 #include <queue>
 #include <map>
+#include <set>
 #ifdef __GNUC__
 #include <execinfo.h>
 #endif
@@ -68,7 +69,7 @@ private:
 	static bool m_initialized;
 	static std::vector<GameObject *> m_gameobjects;
 	static std::queue<GameObject*> m_gameobjects_to_add;
-	static std::vector<GameObject*> m_gameobjects_to_remove;
+	static std::set<GameObject*> m_gameobjects_to_remove;
 	static GAMEOBJECT_ID m_latest_gameobject_id;
 	static ResourceArchive m_engine_resources;
 };
