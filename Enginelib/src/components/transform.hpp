@@ -34,7 +34,7 @@ public:
 private:
 	void increase_rotation(double amount);
 	bool m_dynamic = true;
-	Vector3D m_position;
-	double m_rotation; 
-	Vector3D m_scale;
+	Vector3D m_position = Vector3D(0,0,0);
+	double m_rotation = 0; 
+	Vector3D m_scale = Vector3D(1,1,1);
 };

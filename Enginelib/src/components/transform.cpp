@@ -1,11 +1,7 @@
 #include "transform.hpp"
 #include "../gameobject.hpp"
 
-Transform::Transform():
-m_scale(1,1,1)
-{
-
-}
+Transform::Transform(){}
 
 void Transform::move(const Vector3D & movement) {
 	m_position += movement;
