@@ -7,11 +7,11 @@ TEST(polygoncollider, collideswith_basic)
 {
 	GameObject owner1(0);
 	PolygonCollider poly1(&owner1);
-	poly1.initialize({ Vector2D(0,0), Vector2D(10, 10), Vector2D(20, 0) });
+	poly1.initialize({ Vector2D(0,0), Vector2D(20, 20), Vector2D(40, 0) });
 	
 	GameObject owner2(1);
 	PolygonCollider poly2(&owner2);
-	poly2.initialize({ Vector2D(0,0), Vector2D(10, 10), Vector2D(20, 0) });
+	poly2.initialize({ Vector2D(0,15), Vector2D(20, 30), Vector2D(40, 15) });
 
 	bool collides = poly1.collides_with(&poly2);
 	ASSERT_TRUE(collides);
@@ -111,6 +111,7 @@ TEST(polygoncollider, polygon_collision_containment)
 	ASSERT_TRUE(collides);
 }
 
+//Found during gameplay, collision did not work between a polygon and a large rectangle.
 TEST(polygoncollider, special_case)
 {
 	GameObject owner1(0);
@@ -143,6 +144,52 @@ TEST(polygoncollider, special_case)
 			Vector2D(-502, 20)
 		}
 	);
+	
+	bool collides = poly2.collides_with(&poly1);
+	ASSERT_FALSE(collides);
+	collides = poly1.collides_with(&poly2);
+	ASSERT_FALSE(collides);
+
+}
+
+//Special case that proves that we need project and stuff on both colliders normals.
+TEST(polygoncollider, special_case_2)
+{
+	GameObject owner1(0);
+	PolygonCollider poly1(&owner1);
+	poly1.initialize(
+		{ 
+			Vector2D(0,0), 
+			Vector2D(10,20), 
+			Vector2D(40, 40),
+			Vector2D(60, 20),
+			Vector2D(70, 0),
+			Vector2D(60, -10),
+			Vector2D(40, -20),
+			Vector2D(20, -10),
+
+		 }
+		);
+	owner1.transform().set_position(Vector3D(0, 0, 0));
+	owner1.transform().rotate(0);
+
+	GameObject owner2(1);
+	owner2.transform().rotate(128.97001111507416);
+	owner2.transform().set_position(Vector3D(63.559987992738506, 9.3944550799068107, 0));
+	PolygonCollider poly2(&owner2);
+	poly2.initialize(
+		{ 
+			Vector2D(0,0), 
+			Vector2D(10,20), 
+			Vector2D(40, 40),
+			Vector2D(60, 20),
+			Vector2D(70, 0),
+			Vector2D(60, -10),
+			Vector2D(40, -20),
+			Vector2D(20, -10),
+
+		 }
+		);
 	
 	bool collides = poly2.collides_with(&poly1);
 	ASSERT_FALSE(collides);
