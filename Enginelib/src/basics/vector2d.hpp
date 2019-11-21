@@ -1,5 +1,4 @@
 #pragma once
-#include <SDL_rect.h>
 #include <iostream>
 class Vector3D;
 class Vector2DInt;
@@ -41,7 +40,6 @@ public:
 	Vector2D normalized()const;
 	void set(double, double);
 	void round_to_int();
-	SDL_Point get_sdl_point();
 	double x = 0;
 	double y = 0;
 	friend std::ostream & operator <<(std::ostream & stream, const Vector2D &);

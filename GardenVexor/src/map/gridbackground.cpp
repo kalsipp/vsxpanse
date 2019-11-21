@@ -31,7 +31,7 @@ void GridBackground::render()
 		{
 			Vector2D pos(posses[x], posses[y]);
 			const int indx = x + GRIBACKGROUND_NUMBER_OF_PARTS_X * y;
-			GraphicsManager::render_texture(*m_map_sprites[indx], pos, Vector2D(1, 1), 0, true, SDL_FLIP_NONE);
+			GraphicsManager::render_texture(*m_map_sprites[indx], pos, Vector2D(1, 1), 0, true);
 		}
 	}
 }

@@ -1,5 +1,5 @@
 #include "sprite.hpp"
-
+#include <SDL.h>
 
 Sprite::Sprite(SDL_Texture * new_text): m_texture(new_text) {
 	int width = 0;
@@ -8,7 +8,7 @@ Sprite::Sprite(SDL_Texture * new_text): m_texture(new_text) {
 	m_rect = {0, 0, width, height};
 }
 
-Sprite::Sprite(SDL_Texture * new_text, const SDL_Rect & new_rect):
+Sprite::Sprite(SDL_Texture * new_text, const RectInt & new_rect):
 	m_texture(new_text),
 	m_rect(new_rect) {}
 
@@ -17,13 +17,6 @@ SDL_Texture * Sprite::get_sdl_texture()const {
 	return m_texture;
 }
 
-void Sprite::set_sdl_rect(int x, int y, int w, int h) {
-	m_rect.x = x;
-	m_rect.y = y;
-	m_rect.w = w;
-	m_rect.h = h;
-}
-
-const SDL_Rect * Sprite::get_sdl_rect() const {
-	return &m_rect;
+const RectInt & Sprite::get_rect() const {
+	return m_rect;
 }

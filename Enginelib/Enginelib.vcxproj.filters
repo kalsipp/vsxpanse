@@ -91,6 +91,9 @@
     <ClInclude Include="src\components\polygoncollider.hpp">
       <Filter>src\components</Filter>
     </ClInclude>
+    <ClInclude Include="src\basics\rectint.hpp">
+      <Filter>src\basics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\graphicsmanager.cpp">
@@ -161,6 +164,9 @@
     </ClCompile>
     <ClCompile Include="src\components\polygoncollider.cpp">
       <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basics\rectint.cpp">
+      <Filter>src\basics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

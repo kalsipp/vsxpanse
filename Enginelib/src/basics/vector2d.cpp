@@ -110,9 +110,6 @@ void Vector2D::round_to_int(){
 	y = double(round(y));
 }
 
-SDL_Point Vector2D::get_sdl_point() {
-	return SDL_Point{int(round(x)), int(round(y))};
-}
 std::ostream & operator <<(std::ostream & stream, const Vector2D & p){
 	stream << "(" << p.x << "," << p.y << ")";
 	return stream;
